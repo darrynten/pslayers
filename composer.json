@@ -1,0 +1,23 @@
+{
+  "name": "darrynten/pslayers",
+  "description": "PHP Imagick Layers",
+  "type": "library",
+  "require": {
+    "php": "^5.5.9 || ^7.0",
+    "guzzlehttp/guzzle": "^6.2.1",
+    "darrynten/any-cache": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.0",
+    "mockery/mockery": "dev-master"
+  },
+  "config": {
+    "bin-dir": "bin"
+  },
+  "autoload": {
+    "psr-4": {
+      "DarrynTen\\Pslayers\\": "src/"
+    },
+    "exclude-from-classmap": ["/Tests/"]
+  }
+}
