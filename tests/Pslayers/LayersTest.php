@@ -17,18 +17,21 @@ class LayersTest extends PHPUnit_Framework_TestCase
 
     public function testGetLayersArray()
     {
+        $layer = new Layer([
+            'id' => 1,
+            'opacity' => 1,
+            'width' => 111,
+            'height' => 111,
+        ]);
+
         $expected = [
             'layers' => [
-                [
-                    'id' => 1
-                ]
+                $layer
             ]
         ];
 
-        $layer = new Layer(['id' => 1]);
         $layers = new Layers;
-
-        $layers->addLayerToCollection($layer);
+        $layers->addLayerToCollection($layer, 0);
 
         $this->assertEquals($expected, $layers->getLayersArray());
     }
@@ -37,16 +40,26 @@ class LayersTest extends PHPUnit_Framework_TestCase
     {
         $expected = json_encode([
             'layers' => [
-                [
-                    'id' => 1
+                '1' => [
+                    'id' => 1,
+                    'width' => 1,
+                    'height' => 1,
+                    'positionX' => 0,
+                    'positionY' => 0,
+                    'opacity' => 0.4,
                 ]
             ]
         ]);
 
-        $layer = new Layer(['id' => 1]);
+        $layer = new Layer([
+            'id' => 1,
+            'opacity' => 0.4,
+            'width' => 1,
+            'height' => 1,
+        ]);
         $layers = new Layers;
 
-        $layers->addLayerToCollection($layer);
+        $layers->addLayerToCollection($layer, 1);
 
         $this->assertEquals($expected, $layers->getLayersJson());
     }

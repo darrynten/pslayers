@@ -11,7 +11,19 @@ class PslayersTest extends PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {
-        $config = [];
+        $config = [
+            'id' => 11,
+            'width' => 800,
+            'height' => 300,
+        ];
+
+        $instance = new Pslayers($config);
+        $this->assertInstanceOf(Pslayers::class, $instance);
+
+        $config = [
+            'width' => 800,
+            'height' => 300,
+        ];
 
         $instance = new Pslayers($config);
         $this->assertInstanceOf(Pslayers::class, $instance);
