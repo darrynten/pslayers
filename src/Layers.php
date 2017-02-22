@@ -40,7 +40,7 @@ class Layers
     public function getLayersArray()
     {
         return [
-            'contentItems' => $this->collection
+            'layers' => $this->collection
         ];
     }
 
