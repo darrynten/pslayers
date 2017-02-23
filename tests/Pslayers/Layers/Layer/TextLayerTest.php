@@ -7,7 +7,7 @@ use DarrynTen\Pslayers\Layers\Layer\TextLayer;
 
 class TextLayerTest extends PHPUnit_Framework_TestCase
 {
-    public function testNewLayer()
+    public function testNewTextLayer()
     {
         $layer = new TextLayer([
             'id' => 1,

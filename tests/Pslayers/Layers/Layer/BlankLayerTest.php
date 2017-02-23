@@ -3,24 +3,24 @@
 namespace DarrynTen\Pslayers\Tests;
 
 use PHPUnit_Framework_TestCase;
-use DarrynTen\Pslayers\Layers\BaseLayer;
+use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 
-class LayerTest extends PHPUnit_Framework_TestCase
+class BlankLayersTest extends PHPUnit_Framework_TestCase
 {
-    public function testNewLayer()
+    public function testNewBlankLayer()
     {
-        $layer = new BaseLayer([
+        $layer = new BlankLayer([
             'id' => 1,
             'width' => 500,
             'height' => 500
         ]);
 
-        $this->assertInstanceOf(BaseLayer::class, $layer);
+        $this->assertInstanceOf(BlankLayer::class, $layer);
     }
 
     public function testOpacity()
     {
-        $layer = new BaseLayer([
+        $layer = new BlankLayer([
             'id' => 1,
             'width' => 200,
             'height' => 2000
@@ -55,7 +55,7 @@ class LayerTest extends PHPUnit_Framework_TestCase
             'opacity' => 1.0,
         ];
 
-        $layer = new BaseLayer([
+        $layer = new BlankLayer([
             'id' => 1,
             'width' => 400,
             'height' => 200,
@@ -67,7 +67,7 @@ class LayerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expected, $layer->getLayerDetailsArray());
     }
 
-    public function testGetLayerJson()
+    public function testGetBlankLayerJson()
     {
         $expected = json_encode([
             'id' => 1,
@@ -78,7 +78,7 @@ class LayerTest extends PHPUnit_Framework_TestCase
             'positionY' => 0,
         ]);
 
-        $layer = new BaseLayer([
+        $layer = new BlankLayer([
             'id' => 1,
             'width' => -100,
             'height' => -100,

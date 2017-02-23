@@ -15,7 +15,7 @@ use DarrynTen\Pslayers\PslayersException;
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class BaseLayer
+abstract class BaseLayer implements LayerInterface
 {
     /**
      * ID
@@ -213,23 +213,6 @@ class BaseLayer
         }
 
         return $this->opacity = $opacity;
-    }
-
-    /**
-     * Returns an representation of the layer
-     *
-     * @return array
-     */
-    public function getLayerDetailsArray()
-    {
-        return [
-            'id' => $this->id,
-            'opacity' => $this->opacity(),
-            'width' => $this->width(),
-            'height' => $this->height(),
-            'positionX' => $this->positionX(),
-            'positionY' => $this->positionY(),
-        ];
     }
 
     /**

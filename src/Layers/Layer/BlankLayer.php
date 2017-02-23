@@ -2,14 +2,12 @@
 
 namespace DarrynTen\Pslayers\Layers\Layer;
 
-use Imagick;
-
 use DarrynTen\Pslayers\Layers\BaseLayer;
 use DarrynTen\Pslayers\Layers\LayerInterface;
 use DarrynTen\Pslayers\PslayersException;
 
 /**
- * Pslayers Layer Item
+ * Pslayers Blank Layer
  *
  * @category Layer
  * @package  Pslayers
@@ -17,45 +15,16 @@ use DarrynTen\Pslayers\PslayersException;
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class TextLayer extends BaseLayer implements LayerInterface
+class BlankLayer extends BaseLayer
 {
     /**
-     * Text Content
+     * Construct
      *
-     * @var string $text
+     * @param array $config
      */
-    public $text;
-
-    public $font;
-    public $size;
-    public $colour;
-
-    // flags
-    public $wrap;
-
     public function __construct(array $config)
     {
-        $this->text(
-            !empty($config['text']) ? $config['text'] : ''
-        );
-
         parent::__construct($config);
-    }
-
-    /**
-     * Get and set the width of the layer
-     *
-     * @param null|int $width The width
-     *
-     * @return boolean|int
-     */
-    public function text(string $text = null)
-    {
-        if ($text === null) {
-            return $this->text;
-        }
-
-        return $this->text = $text;
     }
 
     /**
@@ -72,7 +41,6 @@ class TextLayer extends BaseLayer implements LayerInterface
             'height' => $this->height(),
             'positionX' => $this->positionX(),
             'positionY' => $this->positionY(),
-            'text' => $this->text(),
         ];
     }
 }

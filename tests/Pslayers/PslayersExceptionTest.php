@@ -4,7 +4,7 @@ namespace DarrynTen\Pslayers\Tests\Pslayers;
 
 use DarrynTen\Pslayers\PslayersException;
 use DarrynTen\Pslayers\Pslayers;
-use DarrynTen\Pslayers\Layers\BaseLayer;
+use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 
 use PHPUnit_Framework_TestCase;
 
@@ -48,14 +48,14 @@ class PslayersExceptionTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(PslayersException::class);
 
-        $instance = new BaseLayer([]);
+        $instance = new BlankLayer([]);
     }
 
     public function testMissingLayerWidth()
     {
         $this->expectException(PslayersException::class);
 
-        $instance = new BaseLayer([
+        $instance = new BlankLayer([
             'id' => 1,
         ]);
     }
@@ -64,7 +64,7 @@ class PslayersExceptionTest extends PHPUnit_Framework_TestCase
     {
         $this->expectException(PslayersException::class);
 
-        $instance = new BaseLayer([
+        $instance = new BlankLayer([
             'id' => 1,
             'width' => 100,
         ]);

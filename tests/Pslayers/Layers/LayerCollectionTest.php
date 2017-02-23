@@ -3,7 +3,7 @@
 namespace DarrynTen\Pslayers\Tests;
 
 use PHPUnit_Framework_TestCase;
-use DarrynTen\Pslayers\Layers\BaseLayer;
+use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 use DarrynTen\Pslayers\Layers\LayerCollection;
 
 class LayerCollectionTest extends PHPUnit_Framework_TestCase
@@ -17,7 +17,7 @@ class LayerCollectionTest extends PHPUnit_Framework_TestCase
 
     public function testGetLayersArray()
     {
-        $layer = new BaseLayer([
+        $layer = new BlankLayer([
             'id' => 1,
             'opacity' => 1,
             'width' => 111,
@@ -52,7 +52,7 @@ class LayerCollectionTest extends PHPUnit_Framework_TestCase
             ]
         ]);
 
-        $layer = new BaseLayer([
+        $layer = new BlankLayer([
             'id' => 1,
             'opacity' => 0.4,
             'width' => 1,
