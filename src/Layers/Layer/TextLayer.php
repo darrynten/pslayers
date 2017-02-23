@@ -9,7 +9,7 @@ use DarrynTen\Pslayers\Layers\LayerInterface;
 use DarrynTen\Pslayers\PslayersException;
 
 /**
- * Pslayers Layer Item
+ * Pslayers Text Layer
  *
  * @category Layer
  * @package  Pslayers
@@ -39,15 +39,55 @@ class TextLayer extends BaseLayer implements LayerInterface
             !empty($config['text']) ? $config['text'] : ''
         );
 
+        $this->font(
+            !empty($config['font']) ? $config['font'] : 'serif'
+        );
+
+        $this->size(
+            !empty($config['size']) ? $config['size'] : 16
+        );
+
         parent::__construct($config);
     }
 
     /**
-     * Get and set the width of the layer
+     * Get and set the font
      *
-     * @param null|int $width The width
+     * @param null|int $font The font
+     *
+     * @return boolean|string
+     */
+    public function font(string $font = null)
+    {
+        if ($font === null) {
+            return $this->font;
+        }
+
+        return $this->font = $font;
+    }
+
+    /**
+     * Get and set the size
+     *
+     * @param null|int $size The size
      *
      * @return boolean|int
+     */
+    public function size(int $size = null)
+    {
+        if ($size === null) {
+            return $this->size;
+        }
+
+        return $this->size = $size;
+    }
+
+    /**
+     * Get and set the text
+     *
+     * @param null|string $text The text
+     *
+     * @return boolean|string
      */
     public function text(string $text = null)
     {

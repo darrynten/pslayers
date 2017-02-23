@@ -180,6 +180,22 @@ abstract class BaseLayer implements LayerInterface
      *
      * @return boolean|int
      */
+    public function composite(int $imagickConstant = null)
+    {
+        if ($imagickConstant === null) {
+            return $this->composite;
+        }
+
+        return $this->composite = $imagickConstant;
+    }
+
+    /**
+     * Get and set the Y pos
+     *
+     * @param null|int $position The Y position
+     *
+     * @return boolean|int
+     */
     public function positionY(int $position = null)
     {
         if ($position === null) {

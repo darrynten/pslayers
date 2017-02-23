@@ -2,6 +2,8 @@
 
 namespace DarrynTen\Pslayers\Tests;
 
+use Imagick;
+
 use PHPUnit_Framework_TestCase;
 use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 
@@ -42,6 +44,20 @@ class BlankLayersTest extends PHPUnit_Framework_TestCase
 
         $layer->opacity(1);
         $this->assertEquals(1.0, $layer->opacity());
+    }
+
+    public function testComposite()
+    {
+        $layer = new BlankLayer([
+            'id' => 1,
+            'width' => 200,
+            'height' => 2000
+        ]);
+
+        $this->assertEquals(Imagick::COMPOSITE_DEFAULT, $layer->composite());
+
+        $layer->composite(Imagick::COMPOSITE_BLEND);
+        $this->assertEquals(Imagick::COMPOSITE_BLEND, $layer->composite());
     }
 
     public function testGetLayerArray()

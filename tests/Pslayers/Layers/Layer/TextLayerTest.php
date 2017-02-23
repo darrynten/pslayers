@@ -30,7 +30,24 @@ class TextLayerTest extends PHPUnit_Framework_TestCase
 
         $layer->text('text');
         $this->assertEquals('text', $layer->text());
+    }
 
+    public function testText()
+    {
+        $layer = new TextLayer([
+            'id' => 1,
+            'width' => 200,
+            'height' => 2000
+        ]);
+
+        $this->assertEquals('serif', $layer->font());
+        $this->assertEquals(16, $layer->size());
+
+        $layer->font('Ubuntu');
+        $this->assertEquals('Ubuntu', $layer->font());
+
+        $layer->size(16);
+        $this->assertEquals(16, $layer->size());
     }
 
     public function testGetTextLayerArray()
