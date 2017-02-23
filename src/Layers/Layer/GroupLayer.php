@@ -3,10 +3,11 @@
 namespace DarrynTen\Pslayers\Layers\Layer;
 
 use DarrynTen\Pslayers\Layers\BaseLayer;
+use DarrynTen\Pslayers\Layers\LayerCollection;
 use DarrynTen\Pslayers\PslayersException;
 
 /**
- * Pslayers Blank Layer
+ * Pslayers Group Layer
  *
  * @category Layer
  * @package  Pslayers
@@ -14,8 +15,15 @@ use DarrynTen\Pslayers\PslayersException;
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class BlankLayer extends BaseLayer
+class GroupLayer extends BaseLayer
 {
+    /**
+     * Layers
+     *
+     * @var LayerCollection $group
+     */
+    public $group;
+
     /**
      * Construct
      *
@@ -23,6 +31,8 @@ class BlankLayer extends BaseLayer
      */
     public function __construct(array $config)
     {
+        $this->group = new LayerCollection;
+
         parent::__construct($config);
     }
 
@@ -41,6 +51,7 @@ class BlankLayer extends BaseLayer
             'positionX' => $this->positionX(),
             'positionY' => $this->positionY(),
             'composite' => $this->composite(),
+            'group' => $this->group,
         ];
     }
 }

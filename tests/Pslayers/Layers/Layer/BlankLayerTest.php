@@ -18,6 +18,19 @@ class BlankLayersTest extends PHPUnit_Framework_TestCase
         ]);
 
         $this->assertInstanceOf(BlankLayer::class, $layer);
+        $this->assertObjectHasAttribute('id', $layer);
+        $this->assertObjectHasAttribute('width', $layer);
+        $this->assertObjectHasAttribute('height', $layer);
+        $this->assertObjectHasAttribute('positionX', $layer);
+        $this->assertObjectHasAttribute('positionY', $layer);
+        $this->assertObjectHasAttribute('opacity', $layer);
+        $this->assertObjectHasAttribute('composite', $layer);
+
+        $this->assertObjectHasAttribute('canvas', $layer);
+        $this->assertInstanceOf(Imagick::class, $layer->canvas);
+
+        // TODO
+        $layer->render();
     }
 
     public function testOpacity()

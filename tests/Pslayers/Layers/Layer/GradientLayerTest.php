@@ -4,57 +4,42 @@ namespace DarrynTen\Pslayers\Tests;
 
 use Imagick;
 use PHPUnit_Framework_TestCase;
-use DarrynTen\Pslayers\Layers\Layer\TextLayer;
+use DarrynTen\Pslayers\Layers\Layer\GradientLayer;
 
-class TextLayerTest extends PHPUnit_Framework_TestCase
+class GradientLayerTest extends PHPUnit_Framework_TestCase
 {
-    public function testNewTextLayer()
+    public function testGradientLayer()
     {
-        $layer = new TextLayer([
+        $layer = new GradientLayer([
             'id' => 1,
             'width' => 500,
             'height' => 500,
         ]);
 
-        $this->assertInstanceOf(TextLayer::class, $layer);
-        $this->assertObjectHasAttribute('font', $layer);
-        $this->assertObjectHasAttribute('size', $layer);
-        $this->assertObjectHasAttribute('colour', $layer);
+        $this->assertInstanceOf(GradientLayer::class, $layer);
+        $this->assertObjectHasAttribute('startColour', $layer);
+        $this->assertObjectHasAttribute('endColour', $layer);
     }
 
-    public function testDefaultText()
+    public function testGradientColours()
     {
-        $layer = new TextLayer([
+        $layer = new GradientLayer([
             'id' => 1,
             'width' => 200,
             'height' => 2000
         ]);
 
-        $this->assertEquals('', $layer->text());
+        $this->assertEquals('', $layer->startColour());
+        $this->assertEquals('', $layer->endColour());
 
-        $layer->text('text');
-        $this->assertEquals('text', $layer->text());
+        $layer->startColour('text');
+        $layer->endColour('text2');
+
+        $this->assertEquals('text', $layer->startColour());
+        $this->assertEquals('text2', $layer->endColour());
     }
 
-    public function testText()
-    {
-        $layer = new TextLayer([
-            'id' => 1,
-            'width' => 200,
-            'height' => 2000
-        ]);
-
-        $this->assertEquals('serif', $layer->font());
-        $this->assertEquals(16, $layer->size());
-
-        $layer->font('Ubuntu');
-        $this->assertEquals('Ubuntu', $layer->font());
-
-        $layer->size(16);
-        $this->assertEquals(16, $layer->size());
-    }
-
-    public function testGetTextLayerArray()
+    public function testGetGradientLayerArray()
     {
         $expected = [
             'id' => 1,
@@ -64,10 +49,11 @@ class TextLayerTest extends PHPUnit_Framework_TestCase
             'positionY' => 1,
             'opacity' => 1.0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'text' => '',
+            'startColour' => '',
+            'endColour' => '',
         ];
 
-        $layer = new TextLayer([
+        $layer = new GradientLayer([
             'id' => 1,
             'width' => 400,
             'height' => 200,
@@ -89,10 +75,11 @@ class TextLayerTest extends PHPUnit_Framework_TestCase
             'positionX' => 0,
             'positionY' => 0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'text' => '',
+            'startColour' => null,
+            'endColour' => null,
         ]);
 
-        $layer = new TextLayer([
+        $layer = new GradientLayer([
             'id' => 1,
             'width' => -100,
             'height' => -100,

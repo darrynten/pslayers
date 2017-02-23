@@ -6,9 +6,7 @@ use DarrynTen\Pslayers\Layers\BaseLayer;
 use DarrynTen\Pslayers\PslayersException;
 
 /**
- * Pslayers Gradient Layer
- *
- * TODO very incomplete
+ * Pslayers Blank Layer
  *
  * @category Layer
  * @package  Pslayers
@@ -16,21 +14,14 @@ use DarrynTen\Pslayers\PslayersException;
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class GradientLayer extends BaseLayer
+class SolidLayer extends BaseLayer
 {
     /**
-     * Start Colour
+     * Fill Colour
      *
      * @var string $colour
      */
-    public $startColour;
-
-    /**
-     * End Colour
-     *
-     * @var string $colour
-     */
-    public $endColour;
+    public $colour;
 
     /**
      * Construct
@@ -43,36 +34,21 @@ class GradientLayer extends BaseLayer
     }
 
     /**
-     * Get and set the start colour
+     * Get and set the colour
      *
      * @param null|int $colour The colour
      *
      * @return boolean|string
      */
-    public function startColour(string $colour = null)
+    public function colour(string $colour = null)
     {
         if ($colour === null) {
-            return $this->startColour;
+            return $this->colour;
         }
 
-        return $this->startColour = $colour;
+        return $this->colour = $colour;
     }
 
-    /**
-     * Get and set the end colour
-     *
-     * @param null|int $colour The end colour
-     *
-     * @return boolean|string
-     */
-    public function endColour(string $colour = null)
-    {
-        if ($colour === null) {
-            return $this->endColour;
-        }
-
-        return $this->endColour = $colour;
-    }
 
     /**
      * Returns an representation of the layer
@@ -89,8 +65,7 @@ class GradientLayer extends BaseLayer
             'positionX' => $this->positionX(),
             'positionY' => $this->positionY(),
             'composite' => $this->composite(),
-            'startColour' => $this->startColour(),
-            'endColour' => $this->endColour(),
+            'colour' => $this->colour(),
         ];
     }
 }

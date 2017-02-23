@@ -47,7 +47,8 @@ class LayerCollectionTest extends PHPUnit_Framework_TestCase
                     'positionX' => 0,
                     'positionY' => 0,
                     'opacity' => 0.4,
-                    'composite' => 40
+                    'composite' => 40,
+                    'canvas' => new \stdClass,
                 ]
             ]
         ]);

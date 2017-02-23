@@ -5,7 +5,6 @@ namespace DarrynTen\Pslayers\Layers\Layer;
 use Imagick;
 
 use DarrynTen\Pslayers\Layers\BaseLayer;
-use DarrynTen\Pslayers\Layers\LayerInterface;
 use DarrynTen\Pslayers\PslayersException;
 
 /**
@@ -17,7 +16,7 @@ use DarrynTen\Pslayers\PslayersException;
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class TextLayer extends BaseLayer implements LayerInterface
+class TextLayer extends BaseLayer
 {
     /**
      * Text Content

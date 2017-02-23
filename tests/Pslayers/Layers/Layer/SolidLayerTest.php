@@ -4,57 +4,37 @@ namespace DarrynTen\Pslayers\Tests;
 
 use Imagick;
 use PHPUnit_Framework_TestCase;
-use DarrynTen\Pslayers\Layers\Layer\TextLayer;
+use DarrynTen\Pslayers\Layers\Layer\SolidLayer;
 
-class TextLayerTest extends PHPUnit_Framework_TestCase
+class SolidLayerTest extends PHPUnit_Framework_TestCase
 {
-    public function testNewTextLayer()
+    public function testSolidLayer()
     {
-        $layer = new TextLayer([
+        $layer = new SolidLayer([
             'id' => 1,
             'width' => 500,
             'height' => 500,
         ]);
 
-        $this->assertInstanceOf(TextLayer::class, $layer);
-        $this->assertObjectHasAttribute('font', $layer);
-        $this->assertObjectHasAttribute('size', $layer);
+        $this->assertInstanceOf(SolidLayer::class, $layer);
         $this->assertObjectHasAttribute('colour', $layer);
     }
 
-    public function testDefaultText()
+    public function testDefaultColour()
     {
-        $layer = new TextLayer([
+        $layer = new SolidLayer([
             'id' => 1,
             'width' => 200,
             'height' => 2000
         ]);
 
-        $this->assertEquals('', $layer->text());
+        $this->assertEquals('', $layer->colour());
 
-        $layer->text('text');
-        $this->assertEquals('text', $layer->text());
+        $layer->colour('text');
+        $this->assertEquals('text', $layer->colour());
     }
 
-    public function testText()
-    {
-        $layer = new TextLayer([
-            'id' => 1,
-            'width' => 200,
-            'height' => 2000
-        ]);
-
-        $this->assertEquals('serif', $layer->font());
-        $this->assertEquals(16, $layer->size());
-
-        $layer->font('Ubuntu');
-        $this->assertEquals('Ubuntu', $layer->font());
-
-        $layer->size(16);
-        $this->assertEquals(16, $layer->size());
-    }
-
-    public function testGetTextLayerArray()
+    public function testGetSolidLayerArray()
     {
         $expected = [
             'id' => 1,
@@ -64,10 +44,10 @@ class TextLayerTest extends PHPUnit_Framework_TestCase
             'positionY' => 1,
             'opacity' => 1.0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'text' => '',
+            'colour' => '',
         ];
 
-        $layer = new TextLayer([
+        $layer = new SolidLayer([
             'id' => 1,
             'width' => 400,
             'height' => 200,
@@ -89,10 +69,10 @@ class TextLayerTest extends PHPUnit_Framework_TestCase
             'positionX' => 0,
             'positionY' => 0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'text' => '',
+            'colour' => null,
         ]);
 
-        $layer = new TextLayer([
+        $layer = new SolidLayer([
             'id' => 1,
             'width' => -100,
             'height' => -100,

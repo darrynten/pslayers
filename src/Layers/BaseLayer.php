@@ -73,9 +73,9 @@ abstract class BaseLayer implements LayerInterface
     public $composite = Imagick::COMPOSITE_DEFAULT;
 
     /**
-     * @var Imagick $imagick
+     * @var Imagick $canvas
      */
-    private $imagick;
+    public $canvas;
 
     /**
      * Construct
@@ -113,7 +113,7 @@ abstract class BaseLayer implements LayerInterface
             !empty($config['opacity']) ? $config['opacity'] : 1
         );
 
-        $this->imagick = new Imagick();
+        $this->canvas = new Imagick();
     }
 
     /**
@@ -239,5 +239,10 @@ abstract class BaseLayer implements LayerInterface
     public function getLayerDetailsJson()
     {
         return json_encode($this->getLayerDetailsArray());
+    }
+
+    public function render()
+    {
+        
     }
 }
