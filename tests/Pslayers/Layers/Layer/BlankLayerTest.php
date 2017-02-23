@@ -69,6 +69,7 @@ class BlankLayersTest extends PHPUnit_Framework_TestCase
             'positionX' => 1,
             'positionY' => 1,
             'opacity' => 1.0,
+            'composite' => Imagick::COMPOSITE_DEFAULT
         ];
 
         $layer = new BlankLayer([
@@ -92,6 +93,7 @@ class BlankLayersTest extends PHPUnit_Framework_TestCase
             'height' => 0,
             'positionX' => 0,
             'positionY' => 0,
+            'composite' => Imagick::COMPOSITE_DEFAULT
         ]);
 
         $layer = new BlankLayer([

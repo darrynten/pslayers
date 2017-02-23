@@ -52,4 +52,15 @@ class Pslayers
 
         $this->imagick = new Imagick();
     }
+
+    /**
+     * Master render function
+     *
+     * Render and composite all the renders
+     */
+    public function render()
+    {
+        // TODO
+        return;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace DarrynTen\Pslayers\Tests;
 
+use Imagick;
 use PHPUnit_Framework_TestCase;
 use DarrynTen\Pslayers\Layers\Layer\TextLayer;
 
@@ -59,6 +60,7 @@ class TextLayerTest extends PHPUnit_Framework_TestCase
             'positionX' => 1,
             'positionY' => 1,
             'opacity' => 1.0,
+            'composite' => Imagick::COMPOSITE_DEFAULT,
             'text' => '',
         ];
 
@@ -83,6 +85,7 @@ class TextLayerTest extends PHPUnit_Framework_TestCase
             'height' => 0,
             'positionX' => 0,
             'positionY' => 0,
+            'composite' => Imagick::COMPOSITE_DEFAULT,
             'text' => '',
         ]);
 

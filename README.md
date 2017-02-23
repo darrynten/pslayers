@@ -48,6 +48,7 @@ $layer->height();
 $layer->positionX();
 $layer->positionY();
 $layer->opacity(); // number between 0 and 1
+$layer->composite(); // see notes below
 ```
 
 ##### Getting details of the layer
@@ -59,6 +60,22 @@ layer, which differs from layer to layer.
 There is a helper method that fetches the JSON representation of this
 which is called `getLayerDetailsJson()` and all types of layers have
 this method available on them.
+
+##### Setting the Composite
+
+Composite is the Composite Operator Constants, which is Imagick integer
+constants.
+
+You pass then in with `Imagick::COMPOSITE_DEFAULT` or whichever composite
+operator you want to apply on your layer.
+
+Currently only 1 composite, it is not possible to combine composites yet.
+
+```php
+$layer->composite(Imagick::COMPOSITE_LIGHTEN);
+```
+
+This composite will be applied when the stack is rendered.
 
 #### Collections of Layers
 
@@ -86,6 +103,19 @@ $collection->addLayerToCollection($layer);
 
 // Add a layer with a forced z index (destructive, see notes below)
 $collection->addLayerToCollection($layer, 1);
+```
+
+#### Rendering
+
+You can call the render method on your collection which will render
+up from index 0
+
+```
+$pslayers->addLayerToCollection($layer1);
+$pslayers->addLayerToCollection($layer2);
+$pslayers->addLayerToCollection($layer3);
+
+$pslayers->render();
 ```
 
 ### Layer Parameters

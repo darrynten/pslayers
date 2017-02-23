@@ -34,4 +34,16 @@ class PslayersTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(true, Validation::isValidImageType('jpg'));
         $this->assertFalse(Validation::isValidImageType('doc'));
     }
+
+    public function testMasterRender()
+    {
+        $config = [
+            'id' => 11,
+            'width' => 800,
+            'height' => 300,
+        ];
+
+        $instance = new Pslayers($config);
+        $instance->render();
+    }
 }

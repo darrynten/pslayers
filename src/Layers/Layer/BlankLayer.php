@@ -41,6 +41,7 @@ class BlankLayer extends BaseLayer
             'height' => $this->height(),
             'positionX' => $this->positionX(),
             'positionY' => $this->positionY(),
+            'composite' => $this->composite(),
         ];
     }
 }

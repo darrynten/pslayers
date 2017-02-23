@@ -26,13 +26,30 @@ class TextLayer extends BaseLayer implements LayerInterface
      */
     public $text;
 
+    /**
+     * Font name
+     *
+     * @var string $font The name of the font
+     */
     public $font;
+
+    /**
+     * Font size
+     *
+     * @var string $size The size of the font
+     */
     public $size;
+
+    /**
+     * Font colour
+     *
+     * @var string $colour The colour of the font
+     */
     public $colour;
 
-    // flags
-    public $wrap;
-
+    /**
+     * Construct the text layer
+     */
     public function __construct(array $config)
     {
         $this->text(
@@ -112,6 +129,7 @@ class TextLayer extends BaseLayer implements LayerInterface
             'height' => $this->height(),
             'positionX' => $this->positionX(),
             'positionY' => $this->positionY(),
+            'composite' => $this->composite(),
             'text' => $this->text(),
         ];
     }
