@@ -107,6 +107,8 @@ $collection->addLayerToCollection($layer, 1);
 
 #### Rendering
 
+Not yet implemented
+
 You can call the render method on your collection which will render
 up from index 0
 
@@ -117,6 +119,36 @@ $pslayers->addLayerToCollection($layer3);
 
 $pslayers->render();
 ```
+
+#### Layer Types
+
+##### Blank Layer
+
+Detailed above
+
+##### Text Layer
+
+Allows addition and manipulation of text
+
+Adds some basic properties
+
+```php
+$layer = new TextLayer($config);
+
+$layer->text('text');
+$layer->font('Ubuntu');
+$layer->size(16);
+```
+
+##### Gradient Layer
+
+Not yet implemented
+
+## TODO
+
+* z-index management
+* paramaters below
+* blend/mix modes below
 
 ### Layer Parameters
 
