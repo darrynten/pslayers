@@ -122,9 +122,17 @@ $pslayers->render();
 
 #### Layer Types
 
+More info on the standard layer types
+
 ##### Blank Layer
 
-Detailed above
+Detailed above, this is the most basic but most powerful of layers. It has
+unlimited potential.
+
+You can interact with its `canvas` attribute, which is a fully functional
+Imagick class.
+
+Go crazy!
 
 ##### Text Layer
 
@@ -142,7 +150,44 @@ $layer->size(16);
 
 ##### Gradient Layer
 
-Not yet implemented
+Not fully implemented
+
+```php
+$layer = new GradientLayer($config);
+
+$layer->startColour('#FFFFFF');
+$layer->endColour('#000000');
+```
+
+There is no start or end or direction yet
+
+##### Solid Layer
+
+This is just a solid colour layer
+
+```php
+$layer = new SolidLayer($config);
+
+$layer->colour('#FFFFFF');
+```
+
+##### Group Layer
+
+This is basically a layer that contains another collection of layers
+that can each have their own compositing trees, so you can have greater
+control over your layer composition and manipulation.
+
+```php
+$layer = new GroupLayer($config);
+
+$newTextLayer = new Text($config);
+$newGradientLayer = new Text($config);
+
+$layer->group->addLayerToCollection($newGradientLayer, 1);
+$layer->group->addLayerToCollection($newTextLayer, 2);
+```
+
+This needs to get its render triggered when appropriate
 
 ## TODO
 
@@ -213,10 +258,6 @@ Not yet implemented
 * Gradiant Mask
 * Transparency Mask
 
-
 ## Filters
 
-
-
-
-
+Perhaps groups of filters?
