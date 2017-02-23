@@ -3,21 +3,21 @@
 namespace DarrynTen\Pslayers\Tests;
 
 use PHPUnit_Framework_TestCase;
-use DarrynTen\Pslayers\Layer;
-use DarrynTen\Pslayers\Layers;
+use DarrynTen\Pslayers\Layers\BaseLayer;
+use DarrynTen\Pslayers\Layers\LayerCollection;
 
-class LayersTest extends PHPUnit_Framework_TestCase
+class LayerCollectionTest extends PHPUnit_Framework_TestCase
 {
     public function testNewLayers()
     {
-        $layers = new Layers;
+        $layers = new LayerCollection;
 
-        $this->assertInstanceOf(Layers::class, $layers);
+        $this->assertInstanceOf(LayerCollection::class, $layers);
     }
 
     public function testGetLayersArray()
     {
-        $layer = new Layer([
+        $layer = new BaseLayer([
             'id' => 1,
             'opacity' => 1,
             'width' => 111,
@@ -30,7 +30,7 @@ class LayersTest extends PHPUnit_Framework_TestCase
             ]
         ];
 
-        $layers = new Layers;
+        $layers = new LayerCollection;
         $layers->addLayerToCollection($layer, 0);
 
         $this->assertEquals($expected, $layers->getLayersArray());
@@ -47,17 +47,18 @@ class LayersTest extends PHPUnit_Framework_TestCase
                     'positionX' => 0,
                     'positionY' => 0,
                     'opacity' => 0.4,
+                    'composite' => 40
                 ]
             ]
         ]);
 
-        $layer = new Layer([
+        $layer = new BaseLayer([
             'id' => 1,
             'opacity' => 0.4,
             'width' => 1,
             'height' => 1,
         ]);
-        $layers = new Layers;
+        $layers = new LayerCollection;
 
         $layers->addLayerToCollection($layer, 1);
 

@@ -3,24 +3,24 @@
 namespace DarrynTen\Pslayers\Tests;
 
 use PHPUnit_Framework_TestCase;
-use DarrynTen\Pslayers\Layer;
+use DarrynTen\Pslayers\Layers\BaseLayer;
 
 class LayerTest extends PHPUnit_Framework_TestCase
 {
     public function testNewLayer()
     {
-        $layer = new Layer([
+        $layer = new BaseLayer([
             'id' => 1,
             'width' => 500,
             'height' => 500
         ]);
 
-        $this->assertInstanceOf(Layer::class, $layer);
+        $this->assertInstanceOf(BaseLayer::class, $layer);
     }
 
     public function testOpacity()
     {
-        $layer = new Layer([
+        $layer = new BaseLayer([
             'id' => 1,
             'width' => 200,
             'height' => 2000
@@ -55,7 +55,7 @@ class LayerTest extends PHPUnit_Framework_TestCase
             'opacity' => 1.0,
         ];
 
-        $layer = new Layer([
+        $layer = new BaseLayer([
             'id' => 1,
             'width' => 400,
             'height' => 200,
@@ -78,7 +78,7 @@ class LayerTest extends PHPUnit_Framework_TestCase
             'positionY' => 0,
         ]);
 
-        $layer = new Layer([
+        $layer = new BaseLayer([
             'id' => 1,
             'width' => -100,
             'height' => -100,

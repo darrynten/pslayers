@@ -1,6 +1,6 @@
 <?php
 
-namespace DarrynTen\Pslayers;
+namespace DarrynTen\Pslayers\Layers;
 
 use Imagick;
 
@@ -15,7 +15,7 @@ use DarrynTen\Pslayers\PslayersException;
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class Layer
+class BaseLayer
 {
     /**
      * ID
@@ -62,8 +62,17 @@ class Layer
     public $opacity;
 
     /**
-     * Imagick
+     * Layer Composite
      *
+     * Currently only a mix mode but can be so much more
+     *
+     * Imagick::COMPOSITE_DEFAULT is an example
+     *
+     * @var $composite
+     */
+    public $composite = Imagick::COMPOSITE_DEFAULT;
+
+    /**
      * @var Imagick $imagick
      */
     private $imagick;
@@ -88,7 +97,10 @@ class Layer
         }
 
         $this->id = $config['id'];
+        $this->height($config['height']);
+        $this->width($config['width']);
 
+        // Optionals
         $this->positionX(
             !empty($config['positionX']) ? $config['positionX'] : 0
         );
@@ -100,9 +112,6 @@ class Layer
         $this->opacity(
             !empty($config['opacity']) ? $config['opacity'] : 1
         );
-
-        $this->height($config['height']);
-        $this->width($config['width']);
 
         $this->imagick = new Imagick();
     }

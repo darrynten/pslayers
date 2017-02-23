@@ -1,19 +1,19 @@
 <?php
 
-namespace DarrynTen\Pslayers;
+namespace DarrynTen\Pslayers\Layers;
 
 use Imagick;
 
 /**
- * Pslayers Layers collection model
+ * Pslayers Layer collection model
  *
- * @category Model
+ * @category Collection
  * @package  Pslayers
  * @author   Darryn Ten <darrynten@github.com>
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class Layers
+class LayerCollection
 {
     /**
      * Layer Collection
@@ -25,17 +25,6 @@ class Layers
     public $collection;
 
     /**
-     * Layer Composites
-     *
-     * Currently only a mix mode but can be so much more
-     *
-     * Imagick::COMPOSITE_DEFAULT is an example
-     *
-     * @var $composites
-     */
-    public $composites;
-
-    /**
      * Construct
      *
      * @return object
@@ -43,7 +32,6 @@ class Layers
     public function __construct()
     {
         $this->collection = [];
-        $this->composites = [];
     }
 
     /**
@@ -55,12 +43,10 @@ class Layers
      *
      * @param Layer $layer The layer to add to the stack
      * @param float $index The index layer
-     * @param int $composite The Imagick composition constant
      */
-    public function addLayerToCollection(Layer $layer, int $index, int $composite = Imagick::COMPOSITE_DEFAULT)
+    public function addLayerToCollection(BaseLayer $layer, int $index)
     {
         $this->collection[$index] = $layer;
-        $this->composites[$index] = $composite;
     }
 
     /**
