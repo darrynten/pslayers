@@ -14,14 +14,14 @@ use DarrynTen\Pslayers\PslayersException;
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class SolidLayer extends BaseLayer
+class ImageLayer extends BaseLayer
 {
     /**
-     * Fill Colour
+     * Image
      *
      * @var string $colour
      */
-    public $colour;
+    public $image;
 
     /**
      * Construct
@@ -30,35 +30,27 @@ class SolidLayer extends BaseLayer
      */
     public function __construct(array $config)
     {
-        $this->colour(
-            !empty($config['font']) ? $config['font'] : 'serif'
+        $this->image(
+            !empty($config['image']) ? $config['image'] : ''
         );
 
         parent::__construct($config);
     }
 
     /**
-     * Get and set the colour
+     * Get and set the image
      *
-     * @param null|int $colour The colour
+     * @param null|int $image The image
      *
      * @return boolean|string
      */
-    public function colour(string $colour = null)
+    public function image(string $image = null)
     {
-        if ($colour === null) {
-            return $this->colour;
+        if ($image === null) {
+            return $this->image;
         }
 
-        return $this->colour = $colour;
-    }
-
-    /**
-     * Alias for colour / color
-     */
-    public function color(string $color = null)
-    {
-        return $this->colour($color);
+        return $this->image = $image;
     }
 
 
