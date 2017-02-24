@@ -36,7 +36,7 @@ class Pslayers
      *
      * @var Layers $layers
      */
-    private $layers;
+    public $layers;
 
     /**
      * Construct
@@ -51,6 +51,17 @@ class Pslayers
         $this->layers = new LayerCollection();
 
         $this->imagick = new Imagick();
+    }
+
+    /**
+     * Adds a layer to the root collection
+     *
+     * @param BaseLayer $layer The layer to add
+     * @param int $index The z-index to assign to
+     */
+    public function addLayer($layer, int $index)
+    {
+        $this->layers->addLayerToCollection($layer, $index);
     }
 
     /**
