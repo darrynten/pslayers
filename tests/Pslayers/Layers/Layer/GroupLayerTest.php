@@ -41,6 +41,17 @@ class GroupLayerTest extends PHPUnit_Framework_TestCase
         $layer->group->addLayerToCollection($newLayer, 99);
 
         $this->assertNotEmpty($layer->group->collection);
+
+        $collection = new LayerCollection;
+        $collection->addLayerToCollection($layer, 0);
+
+        $anotherLayer = new GroupLayer([
+            'id' => 3,
+            'width' => 200,
+            'height' => 200,
+            'group' => $collection
+        ]);
+
     }
 
     public function testGetGroupLayerArray()

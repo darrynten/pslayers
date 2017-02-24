@@ -31,7 +31,7 @@ class SolidLayer extends BaseLayer
     public function __construct(array $config)
     {
         $this->colour(
-            !empty($config['font']) ? $config['font'] : 'serif'
+            !empty($config['colour']) ? $config['colour'] : null
         );
 
         parent::__construct($config);

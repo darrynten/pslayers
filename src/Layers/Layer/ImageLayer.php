@@ -31,7 +31,7 @@ class ImageLayer extends BaseLayer
     public function __construct(array $config)
     {
         $this->image(
-            !empty($config['image']) ? $config['image'] : ''
+            !empty($config['image']) ? $config['image'] : null
         );
 
         parent::__construct($config);
@@ -69,7 +69,7 @@ class ImageLayer extends BaseLayer
             'positionX' => $this->positionX(),
             'positionY' => $this->positionY(),
             'composite' => $this->composite(),
-            'colour' => $this->colour(),
+            'image' => $this->image(),
         ];
     }
 }
