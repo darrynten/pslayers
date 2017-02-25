@@ -46,7 +46,7 @@ class LayerCollectionTest extends \PHPUnit_Framework_TestCase
                     'positionX' => 0,
                     'positionY' => 0,
                     'opacity' => 0.4,
-                    'composite' => 54,
+                    'composite' => \Imagick::COMPOSITE_DEFAULT,
                     'canvas' => new \stdClass,
                 ]
             ]
