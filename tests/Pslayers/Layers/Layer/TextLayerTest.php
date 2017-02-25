@@ -3,10 +3,9 @@
 namespace DarrynTen\Pslayers\Tests;
 
 use Imagick;
-use PHPUnit_Framework_TestCase;
 use DarrynTen\Pslayers\Layers\Layer\TextLayer;
 
-class TextLayerTest extends PHPUnit_Framework_TestCase
+class TextLayerTest extends \PHPUnit_Framework_TestCase
 {
     public function testNewTextLayer()
     {

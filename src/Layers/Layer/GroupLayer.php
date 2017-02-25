@@ -4,7 +4,6 @@ namespace DarrynTen\Pslayers\Layers\Layer;
 
 use DarrynTen\Pslayers\Layers\BaseLayer;
 use DarrynTen\Pslayers\Layers\LayerCollection;
-use DarrynTen\Pslayers\PslayersException;
 
 /**
  * Pslayers Group Layer
@@ -41,7 +40,7 @@ class GroupLayer extends BaseLayer
      *
      * @return array
      */
-    public function getLayerDetailsArray()
+    public function getLayerDetailsArray(): array
     {
         return [
             'id' => $this->id,

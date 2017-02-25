@@ -3,7 +3,6 @@
 namespace DarrynTen\Pslayers\Layers;
 
 use Imagick;
-
 use DarrynTen\Pslayers\PslayersException;
 
 /**
@@ -243,6 +242,5 @@ abstract class BaseLayer implements LayerInterface
 
     public function render()
     {
-        
     }
 }

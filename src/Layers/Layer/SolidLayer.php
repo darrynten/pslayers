@@ -3,7 +3,6 @@
 namespace DarrynTen\Pslayers\Layers\Layer;
 
 use DarrynTen\Pslayers\Layers\BaseLayer;
-use DarrynTen\Pslayers\PslayersException;
 
 /**
  * Pslayers Blank Layer
@@ -55,7 +54,7 @@ class SolidLayer extends BaseLayer
      *
      * @return array
      */
-    public function getLayerDetailsArray()
+    public function getLayerDetailsArray(): array
     {
         return [
             'id' => $this->id,

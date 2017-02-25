@@ -2,12 +2,10 @@
 
 namespace DarrynTen\Pslayers\Tests\Pslayers;
 
-use PHPUnit_Framework_TestCase;
-
 use DarrynTen\Pslayers\Pslayers;
 use DarrynTen\Pslayers\Validation;
 
-class PslayersTest extends PHPUnit_Framework_TestCase
+class PslayersTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstruct()
     {

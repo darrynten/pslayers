@@ -2,8 +2,6 @@
 
 namespace DarrynTen\Pslayers\Layers;
 
-use Imagick;
-
 /**
  * Pslayers Layer collection model
  *
@@ -41,7 +39,7 @@ class LayerCollection
      * index OVERWRITES that layer. This is purely for the sake
      * of really not wanting to deal with z-indexing sorting stuff.
      *
-     * @param Layer $layer The layer to add to the stack
+     * @param BaseLayer $layer The layer to add to the stack
      * @param float $index The index layer
      */
     public function addLayerToCollection(BaseLayer $layer, int $index)
@@ -66,7 +64,7 @@ class LayerCollection
      *
      * @return string
      */
-    public function getLayersJson()
+    public function getLayersJson(): string
     {
         return json_encode($this->getLayersArray());
     }
