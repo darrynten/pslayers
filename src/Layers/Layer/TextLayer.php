@@ -23,6 +23,20 @@ class TextLayer extends BaseLayer
     public $text;
 
     /**
+     * Text Content Aignment
+     *
+     * @var string $textAlignment
+     */
+    public $textAlignment;
+
+    /**
+     * Text Content Decoration
+     *
+     * @var string $textAlignment
+     */
+    public $textDecoration;
+
+    /**
      * Font name
      *
      * @var string $font The name of the font
@@ -30,18 +44,88 @@ class TextLayer extends BaseLayer
     public $font;
 
     /**
-     * Font size
+     * Font family
      *
-     * @var string $size The size of the font
+     * @var string $fontFamily The name of the font family
      */
-    public $size;
+    public $fontFamily;
 
     /**
-     * Font colour
+     * Font size
      *
-     * @var string $colour The colour of the font
+     * @var string $fontSize The size of the font
      */
-    public $colour;
+    public $fontSize;
+
+    /**
+     * Font weight
+     *
+     * @var int $fontWeight The weight of the font
+     */
+    public $fontWeight;
+
+    /**
+     * Font stretchh
+     *
+     * @var int $fontStretch
+     */
+    public $fontStretch;
+
+    /**
+     * Font Style
+     *
+     * @var int $fontStyle
+     */
+    public $fontStyle;
+
+    /**
+     * Font under colour
+     *
+     * @var string $underColour The colour under the font
+     */
+    public $underColour;
+
+    /**
+     * Font fill colour
+     *
+     * @var string $fillColour The fill colour of the font
+     */
+    public $fillColour;
+
+    /**
+     * Fill opacity
+     *
+     * @var float $fillOpacity
+     */
+    public $fillOpacity;
+
+    /**
+     * Font stroke colour
+     *
+     * @var string $strokeColour The outline colour of the font
+     */
+    public $strokeColour;
+
+    /**
+     * Stroke width
+     *
+     * @var int $strokeWidth The width of the stroke
+     */
+    public $strokeWidth;
+
+    /**
+     * Stroke opacity
+     *
+     * @var float $strokeOpacity The opacity of the stroke
+     */
+    public $strokeOpacity;
+
+    /**
+     * Imagick Draw object
+     *
+     * @var ImagicDraw $drawObject
+     */
+    private $drawObject;
 
     /**
      * Construct the text layer
@@ -52,12 +136,56 @@ class TextLayer extends BaseLayer
             !empty($config['text']) ? $config['text'] : ''
         );
 
+        $this->textAlignment(
+            !empty($config['textAlignment']) ? $config['textAlignment'] : \Imagick::ALIGN_LEFT
+        );
+
+        $this->textDecoration(
+            !empty($config['textDecoration']) ? $config['textDecoration'] : \Imagick::DECORATION_NONE
+        );
+
         $this->font(
             !empty($config['font']) ? $config['font'] : 'serif'
         );
 
-        $this->size(
-            !empty($config['size']) ? $config['size'] : 16
+        $this->fontFamily(
+            !empty($config['fontFamily']) ? $config['fontFamily'] : 'Times'
+        );
+
+        $this->fontSize(
+            !empty($config['fontSize']) ? $config['fontSize'] : 16
+        );
+
+        $this->fontWeight(
+            !empty($config['fontWeight']) ? $config['fontWeight'] : 200
+        );
+
+        $this->fontStretch(
+            !empty($config['fontStretch']) ? $config['fontStretch'] : \Imagick::STRETCH_ANY
+        );
+
+        $this->fontStyle(
+            !empty($config['fontStyle']) ? $config['fontStyle'] : \Imagick::STYLE_NORMAL
+        );
+
+        $this->underColour(
+            !empty($config['underColour']) ? $config['underColour'] : ''
+        );
+
+        $this->fillColour(
+            !empty($config['fillColour']) ? $config['fillColour'] : ''
+        );
+
+        $this->strokeColour(
+            !empty($config['strokeColour']) ? $config['strokeColour'] : ''
+        );
+
+        $this->strokeWidth(
+            !empty($config['strokeWidth']) ? $config['strokeWidth'] : 1
+        );
+
+        $this->strokeOpacity(
+            !empty($config['strokeOpacity']) ? $config['strokeOpacity'] : 1
         );
 
         parent::__construct($config);
@@ -86,13 +214,13 @@ class TextLayer extends BaseLayer
      *
      * @return boolean|int
      */
-    public function size(int $size = null)
+    public function fontSize(int $size = null)
     {
         if ($size === null) {
-            return $this->size;
+            return $this->fontSize;
         }
 
-        return $this->size = $size;
+        return $this->fontSize = $size;
     }
 
     /**
