@@ -5,6 +5,7 @@ namespace DarrynTen\Pslayers\Tests\Pslayers;
 use DarrynTen\Pslayers\PslayersException;
 use DarrynTen\Pslayers\Pslayers;
 use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
+use DarrynTen\Pslayers\Filters\Filter\BlankFilter;
 
 class PslayersExceptionTest extends \PHPUnit_Framework_TestCase
 {
@@ -66,5 +67,12 @@ class PslayersExceptionTest extends \PHPUnit_Framework_TestCase
             'id' => 1,
             'width' => 100,
         ]);
+    }
+
+    public function testMissingFilterId()
+    {
+        $this->expectException(PslayersException::class);
+
+        $instance = new BlankFilter([]);
     }
 }
