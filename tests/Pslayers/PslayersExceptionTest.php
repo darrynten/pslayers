@@ -6,9 +6,7 @@ use DarrynTen\Pslayers\PslayersException;
 use DarrynTen\Pslayers\Pslayers;
 use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 
-use PHPUnit_Framework_TestCase;
-
-class PslayersExceptionTest extends PHPUnit_Framework_TestCase
+class PslayersExceptionTest extends \PHPUnit_Framework_TestCase
 {
     public function testJsonException()
     {

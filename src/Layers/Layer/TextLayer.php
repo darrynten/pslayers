@@ -2,10 +2,7 @@
 
 namespace DarrynTen\Pslayers\Layers\Layer;
 
-use Imagick;
-
 use DarrynTen\Pslayers\Layers\BaseLayer;
-use DarrynTen\Pslayers\PslayersException;
 
 /**
  * Pslayers Text Layer
@@ -119,7 +116,7 @@ class TextLayer extends BaseLayer
      *
      * @return array
      */
-    public function getLayerDetailsArray()
+    public function getLayerDetailsArray(): array
     {
         return [
             'id' => $this->id,

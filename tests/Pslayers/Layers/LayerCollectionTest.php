@@ -2,11 +2,10 @@
 
 namespace DarrynTen\Pslayers\Tests;
 
-use PHPUnit_Framework_TestCase;
 use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 use DarrynTen\Pslayers\Layers\LayerCollection;
 
-class LayerCollectionTest extends PHPUnit_Framework_TestCase
+class LayerCollectionTest extends \PHPUnit_Framework_TestCase
 {
     public function testNewLayers()
     {
@@ -47,7 +46,7 @@ class LayerCollectionTest extends PHPUnit_Framework_TestCase
                     'positionX' => 0,
                     'positionY' => 0,
                     'opacity' => 0.4,
-                    'composite' => 40,
+                    'composite' => \Imagick::COMPOSITE_DEFAULT,
                     'canvas' => new \stdClass,
                 ]
             ]

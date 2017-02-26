@@ -3,13 +3,11 @@
 namespace DarrynTen\Pslayers\Tests;
 
 use Imagick;
-
-use PHPUnit_Framework_TestCase;
 use DarrynTen\Pslayers\Layers\LayerCollection;
 use DarrynTen\Pslayers\Layers\Layer\GroupLayer;
 use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 
-class GroupLayerTest extends PHPUnit_Framework_TestCase
+class GroupLayerTest extends \PHPUnit_Framework_TestCase
 {
     public function testNewGroupLayer()
     {

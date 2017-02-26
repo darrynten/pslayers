@@ -4,8 +4,6 @@ namespace DarrynTen\Pslayers;
 
 use DarrynTen\Pslayers\Layers\LayerCollection;
 
-use Imagick;
-
 /**
  * Pslayers
  *
@@ -20,7 +18,7 @@ class Pslayers
     /**
      * Imagick Instance
      *
-     * @var Imagick $imagick
+     * @var \Imagick $imagick
      */
     private $imagick;
 
@@ -34,7 +32,7 @@ class Pslayers
     /**
      * Holds the layers
      *
-     * @var Layers $layers
+     * @var LayerCollection $layers
      */
     public $layers;
 
@@ -49,8 +47,7 @@ class Pslayers
     {
         $this->config = new Config($config);
         $this->layers = new LayerCollection();
-
-        $this->imagick = new Imagick();
+        $this->imagick = new \Imagick();
     }
 
     /**

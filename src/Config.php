@@ -51,7 +51,7 @@ class Config
         if (!empty($config['id'])) {
             $this->id = (int) $config['id'];
         } else {
-            $this->id = md5(time());
+            $this->id = uniqid('pslayers', true);
         }
     }
 }
