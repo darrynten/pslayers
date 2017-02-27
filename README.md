@@ -138,14 +138,24 @@ Go crazy!
 
 Allows addition and manipulation of text
 
-Adds some basic properties
+Adds some additional text-specific properties
 
 ```php
 $layer = new TextLayer($config);
 
 $layer->text('text');
 $layer->font('Ubuntu');
-$layer->size(16);
+$layer->fontFamily('Times');
+$layer->fontSize(16);
+$layer->fontWeight(400);
+$layer->fontStretch(\Imagick::STRETCH_ANY);
+$layer->fontSize(\Imagick::STYLE_NORMAL);
+$layer->underColour('#FFF');
+$layer->fillColour('rgba(255, 128, 0, 0.5)');
+$layer->fillOpacity(0.1);
+$layer->strokeColour('hsl(200, 20, 50)');
+$layer->strokeWidth(2);
+$layer->strokeOpacity(1.0);
 ```
 
 ##### Gradient Layer
