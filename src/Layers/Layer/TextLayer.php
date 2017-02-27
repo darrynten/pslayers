@@ -141,7 +141,7 @@ class TextLayer extends BaseLayer
         );
 
         $this->textDecoration(
-            !empty($config['textDecoration']) ? $config['textDecoration'] : \Imagick::DECORATION_NONE
+            !empty($config['textDecoration']) ? $config['textDecoration'] : \Imagick::DECORATION_NO
         );
 
         $this->font(
@@ -174,6 +174,10 @@ class TextLayer extends BaseLayer
 
         $this->fillColour(
             !empty($config['fillColour']) ? $config['fillColour'] : ''
+        );
+
+        $this->fillOpacity(
+            !empty($config['fillOpacity']) ? $config['fillOpacity'] : 1.0
         );
 
         $this->strokeColour(
@@ -224,6 +228,198 @@ class TextLayer extends BaseLayer
     }
 
     /**
+     * Get and set the fontFamily
+     *
+     * @param null|int $fontFamily The fontFamily
+     *
+     * @return boolean|string
+     */
+    public function fontFamily(string $fontFamily = null)
+    {
+        if ($fontFamily === null) {
+            return $this->fontFamily;
+        }
+
+        return $this->fontFamily = $fontFamily;
+    }
+
+    /**
+     * Get and set the fontWeight
+     *
+     * @param null|int $fontWeight The fontWeight
+     *
+     * @return boolean|string
+     */
+    public function fontWeight(int $fontWeight = null)
+    {
+        if ($fontWeight === null) {
+            return $this->fontWeight;
+        }
+
+        return $this->fontWeight = $fontWeight;
+    }
+
+    /**
+     * Get and set the fontStretch
+     *
+     * @param null|int $fontStretch The fontStretch
+     *
+     * @return boolean|int
+     */
+    public function fontStretch(int $fontStretch = null)
+    {
+        if ($fontStretch === null) {
+            return $this->fontStretch;
+        }
+
+        return $this->fontStretch = $fontStretch;
+    }
+
+    /**
+     * Get and set the fontStyle
+     *
+     * @param null|int $fontStyle The fontStyle
+     *
+     * @return boolean|int
+     */
+    public function fontStyle(int $fontStyle = null)
+    {
+        if ($fontStyle === null) {
+            return $this->fontStyle;
+        }
+
+        return $this->fontStyle = $fontStyle;
+    }
+
+    /**
+     * Get and set the underColour
+     *
+     * @param null|int $underColour The underColour
+     *
+     * @return boolean|string
+     */
+    public function underColour(string $underColour = null)
+    {
+        if ($underColour === null) {
+            return $this->underColour;
+        }
+
+        return $this->underColour = $underColour;
+    }
+
+    /**
+     * Get and set the fillColour
+     *
+     * @param null|int $fillColour The fillColour
+     *
+     * @return boolean|string
+     */
+    public function fillColour(string $fillColour = null)
+    {
+        if ($fillColour === null) {
+            return $this->fillColour;
+        }
+
+        return $this->fillColour = $fillColour;
+    }
+
+    /**
+     * Get and set the fillOpacity
+     *
+     * @param null|int $fillOpacity The fillOpacity
+     *
+     * @return boolean|float
+     */
+    public function fillOpacity(float $fillOpacity = null)
+    {
+        if ($fillOpacity === null) {
+            return $this->fillOpacity;
+        }
+
+        return $this->fillOpacity = $fillOpacity;
+    }
+
+    /**
+     * Get and set the strokeColour
+     *
+     * @param null|int $strokeColour The strokeColour
+     *
+     * @return boolean|string
+     */
+    public function strokeColour(string $strokeColour = null)
+    {
+        if ($strokeColour === null) {
+            return $this->strokeColour;
+        }
+
+        return $this->strokeColour = $strokeColour;
+    }
+
+    /**
+     * Get and set the strokeWidth
+     *
+     * @param null|int $strokeWidth The strokeWidth
+     *
+     * @return boolean|int
+     */
+    public function strokeWidth(int $strokeWidth = null)
+    {
+        if ($strokeWidth === null) {
+            return $this->strokeWidth;
+        }
+
+        return $this->strokeWidth = $strokeWidth;
+    }
+
+    /**
+     * Get and set the strokeOpacity
+     *
+     * @param null|int $strokeOpacity The strokeOpacity
+     *
+     * @return boolean|float
+     */
+    public function strokeOpacity(float $strokeOpacity = null)
+    {
+        if ($strokeOpacity === null) {
+            return $this->strokeOpacity;
+        }
+
+        return $this->strokeOpacity = $strokeOpacity;
+    }
+
+    /**
+     * Get and set the textAlignment
+     *
+     * @param null|int $textAlignment The textAlignment
+     *
+     * @return boolean|int
+     */
+    public function textAlignment(int $textAlignment = null)
+    {
+        if ($textAlignment === null) {
+            return $this->textAlignment;
+        }
+
+        return $this->textAlignment = $textAlignment;
+    }
+
+    /**
+     * Get and set the textDecoration
+     *
+     * @param null|int $textDecoration The textDecoration
+     *
+     * @return boolean|int
+     */
+    public function textDecoration(int $textDecoration = null)
+    {
+        if ($textDecoration === null) {
+            return $this->textDecoration;
+        }
+
+        return $this->textDecoration = $textDecoration;
+    }
+
+    /**
      * Get and set the text
      *
      * @param null|string $text The text
@@ -255,6 +451,20 @@ class TextLayer extends BaseLayer
             'positionY' => $this->positionY(),
             'composite' => $this->composite(),
             'text' => $this->text(),
+            'textAlignment' => $this->textAlignment(),
+            'textDecoration' => $this->textDecoration(),
+            'font' => $this->font(),
+            'fontFamily' => $this->fontFamily(),
+            'fontSize' => $this->fontSize(),
+            'fontWeight' => $this->fontWeight(),
+            'fontStretch' => $this->fontStretch(),
+            'fontStyle' => $this->fontStyle(),
+            'underColour' => $this->underColour(),
+            'fillColour' => $this->fillColour(),
+            'fillOpacity' => $this->fillOpacity(),
+            'strokeColour' => $this->strokeColour(),
+            'strokeWidth' => $this->strokeWidth(),
+            'strokeOpacity' => $this->strokeOpacity(),
         ];
     }
 }

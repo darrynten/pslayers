@@ -17,8 +17,8 @@ class TextLayerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(TextLayer::class, $layer);
         $this->assertObjectHasAttribute('font', $layer);
-        $this->assertObjectHasAttribute('size', $layer);
-        $this->assertObjectHasAttribute('colour', $layer);
+        $this->assertObjectHasAttribute('fontSize', $layer);
+        $this->assertObjectHasAttribute('fillColour', $layer);
     }
 
     public function testDefaultText()
@@ -44,13 +44,40 @@ class TextLayerTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $this->assertEquals('serif', $layer->font());
-        $this->assertEquals(16, $layer->size());
+        $this->assertEquals(16, $layer->fontSize());
 
         $layer->font('Ubuntu');
         $this->assertEquals('Ubuntu', $layer->font());
 
-        $layer->size(16);
-        $this->assertEquals(16, $layer->size());
+        $layer->fontSize(14);
+        $this->assertEquals(14, $layer->fontSize());
+
+        $layer->fontWeight(300);
+        $this->assertEquals(300, $layer->fontWeight());
+
+        $layer->fontStretch(\Imagick::STRETCH_EXPANDED);
+        $this->assertEquals(\Imagick::STRETCH_EXPANDED, $layer->fontStretch());
+
+        $layer->fontStyle(\Imagick::STRETCH_EXPANDED);
+        $this->assertEquals(\Imagick::STRETCH_EXPANDED, $layer->fontStyle());
+
+        $layer->underColour('#FFF');
+        $this->assertEquals('#FFF', $layer->underColour());
+
+        $layer->fillColour('#B4D455');
+        $this->assertEquals('#B4D455', $layer->fillColour());
+
+        $layer->fillOpacity(0.5);
+        $this->assertEquals(0.5, $layer->fillOpacity());
+
+        $layer->fillColour('rgba(255, 128, 0, 0.2)');
+        $this->assertEquals('rgba(255, 128, 0, 0.2)', $layer->fillColour());
+
+        $layer->strokeWidth(2);
+        $this->assertEquals(2, $layer->strokeWidth());
+
+        $layer->strokeOpacity(0.0);
+        $this->assertEquals(0.0, $layer->strokeOpacity());
     }
 
     public function testGetTextLayerArray()
@@ -64,6 +91,20 @@ class TextLayerTest extends \PHPUnit_Framework_TestCase
             'opacity' => 1.0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
             'text' => '',
+            'textAlignment' => \Imagick::ALIGN_LEFT,
+            'textDecoration' => \Imagick::DECORATION_NO,
+            'font' => 'serif',
+            'fontFamily' => 'Times',
+            'fontSize' => 16,
+            'fontWeight' => 200,
+            'fontStretch' => \Imagick::STRETCH_ANY,
+            'fontStyle' => \Imagick::STYLE_NORMAL,
+            'underColour' => '',
+            'fillColour' => '',
+            'fillOpacity' => 1,
+            'strokeColour' => '',
+            'strokeWidth' => 1,
+            'strokeOpacity' => 1,
         ];
 
         $layer = new TextLayer([
@@ -89,6 +130,20 @@ class TextLayerTest extends \PHPUnit_Framework_TestCase
             'positionY' => 0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
             'text' => '',
+            'textAlignment' => \Imagick::ALIGN_LEFT,
+            'textDecoration' => \Imagick::DECORATION_NO,
+            'font' => 'serif',
+            'fontFamily' => 'Times',
+            'fontSize' => 16,
+            'fontWeight' => 200,
+            'fontStretch' => \Imagick::STRETCH_ANY,
+            'fontStyle' => \Imagick::STYLE_NORMAL,
+            'underColour' => '',
+            'fillColour' => '',
+            'fillOpacity' => 1,
+            'strokeColour' => '',
+            'strokeWidth' => 1,
+            'strokeOpacity' => 1,
         ]);
 
         $layer = new TextLayer([
