@@ -2,16 +2,16 @@
 /**
  * Pslayers Validation
  *
- * @category Validation
+ * @category Validators
  * @package  Pslayers
  * @author   Darryn Ten <darrynten@github.com>
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
 
-namespace DarrynTen\Pslayers;
+namespace DarrynTen\Pslayers\Validators;
 
-class Validation
+class ImageTypeValidator
 {
     /**
      * The valid image types

@@ -3,7 +3,7 @@
 namespace DarrynTen\Pslayers\Layers\Layer;
 
 use DarrynTen\Pslayers\Layers\BaseLayer;
-use DarrynTen\Pslayers\PslayersException;
+use DarrynTen\Pslayers\Exceptions\PslayersException;
 
 /**
  * Pslayers Blank Layer

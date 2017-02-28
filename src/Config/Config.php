@@ -1,6 +1,8 @@
 <?php
 
-namespace DarrynTen\Pslayers;
+namespace DarrynTen\Pslayers\Config;
+
+use DarrynTen\Pslayers\Exceptions\PslayersException;
 
 /**
  * Pslayers Config

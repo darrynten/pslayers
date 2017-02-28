@@ -1,8 +1,8 @@
 <?php
 
-namespace DarrynTen\Pslayers\Tests\Pslayers;
+namespace DarrynTen\Pslayers\Tests\Pslayers\Exceptions;
 
-use DarrynTen\Pslayers\PslayersException;
+use DarrynTen\Pslayers\Exceptions\PslayersException;
 use DarrynTen\Pslayers\Pslayers;
 use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 use DarrynTen\Pslayers\Filters\Filter\BlankFilter;
