@@ -27,10 +27,15 @@ class SolidLayerTest extends \PHPUnit_Framework_TestCase
             'height' => 2000
         ]);
 
-        $this->assertEquals('', $layer->colour());
+        $this->assertNull($layer->colour());
 
-        $layer->colour('text');
-        $this->assertEquals('text', $layer->colour());
+        $layer->colour('#000');
+        $this->assertEquals('#000', $layer->colour());
+
+        // Americanism
+        $layer->color('#FFFFFF');
+
+        $this->assertEquals('#FFFFFF', $layer->color());
     }
 
     public function testGetSolidLayerArray()

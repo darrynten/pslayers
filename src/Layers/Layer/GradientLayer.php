@@ -3,6 +3,7 @@
 namespace DarrynTen\Pslayers\Layers\Layer;
 
 use DarrynTen\Pslayers\Layers\BaseLayer;
+use DarrynTen\Pslayers\Validators\ColourValidator;
 
 /**
  * Pslayers Gradient Layer
@@ -38,6 +39,14 @@ class GradientLayer extends BaseLayer
      */
     public function __construct(array $config)
     {
+        $this->startColour(
+            !empty($config['startColour']) ? $config['startColour'] : null
+        );
+
+        $this->endColour(
+            !empty($config['endColour']) ? $config['endColour'] : null
+        );
+
         parent::__construct($config);
     }
 
@@ -50,6 +59,8 @@ class GradientLayer extends BaseLayer
      */
     public function startColour(string $colour = null)
     {
+        ColourValidator::isValidColour($colour);
+
         if ($colour === null) {
             return $this->startColour;
         }
@@ -66,6 +77,8 @@ class GradientLayer extends BaseLayer
      */
     public function endColour(string $colour = null)
     {
+        ColourValidator::isValidColour($colour);
+
         if ($colour === null) {
             return $this->endColour;
         }
