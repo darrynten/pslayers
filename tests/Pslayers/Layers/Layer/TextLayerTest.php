@@ -62,8 +62,8 @@ class TextLayerTest extends \PHPUnit_Framework_TestCase
         $layer->fontStretch(\Imagick::STRETCH_EXPANDED);
         $this->assertEquals(\Imagick::STRETCH_EXPANDED, $layer->fontStretch());
 
-        $layer->fontStyle(\Imagick::STRETCH_EXPANDED);
-        $this->assertEquals(\Imagick::STRETCH_EXPANDED, $layer->fontStyle());
+        $layer->fontStyle(\Imagick::STYLE_ITALIC);
+        $this->assertEquals(\Imagick::STYLE_ITALIC, $layer->fontStyle());
 
         $layer->underColour('#FFF');
         $this->assertEquals('#FFF', $layer->underColour());

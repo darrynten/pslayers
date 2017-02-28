@@ -51,4 +51,20 @@ class ColourValidator
 
         throw new PslayersException('Invalid Colour');
     }
+
+    /**
+     * Check if a valid opacity
+     *
+     * Float between 0.0 and 1.0
+     *
+     * @return boolean
+     */
+    public static function isValidOpacity(float $opacity)
+    {
+        if ($opacity < 0 || $opacity > 1) {
+            throw new PslayersException('Invalid Opacity, must be between 0 and 1');
+        }
+
+        return true;
+    }
 }
