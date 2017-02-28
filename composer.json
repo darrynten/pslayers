@@ -7,9 +7,16 @@
     "guzzlehttp/guzzle": "^6.2.1",
     "darrynten/any-cache": "^1.0"
   },
+  "repositories": [
+    {
+      "url": "https://github.com/mxnr/imagic-scripts.git",
+      "type": "git"
+    }
+  ],
   "require-dev": {
     "phpunit/phpunit": "~5.0",
-    "mockery/mockery": "dev-master"
+    "mockery/mockery": "dev-master",
+    "mxnr/imagic-scripts": "~1.0"
   },
   "config": {
     "bin-dir": "bin"
