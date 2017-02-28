@@ -44,11 +44,8 @@ class BlankLayersTest extends \PHPUnit_Framework_TestCase
         $layer->opacity(0.4);
         $this->assertEquals(0.4, $layer->opacity());
 
-        $layer->opacity(-0.4);
+        $layer->opacity(0.0);
         $this->assertEquals(0.0, $layer->opacity());
-
-        $layer->opacity(290);
-        $this->assertEquals(1.0, $layer->opacity());
 
         $layer->opacity(0);
         $this->assertEquals(0.0, $layer->opacity());

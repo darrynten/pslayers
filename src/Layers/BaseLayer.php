@@ -4,6 +4,7 @@ namespace DarrynTen\Pslayers\Layers;
 
 use Imagick;
 use DarrynTen\Pslayers\Exceptions\PslayersException;
+use DarrynTen\Pslayers\Validators\ColourValidator;
 
 /**
  * Pslayers Layer Item
@@ -218,14 +219,7 @@ abstract class BaseLayer implements LayerInterface
             return $this->opacity;
         }
 
-        // Otherwise Set
-        if ($opacity <= 0.0) {
-            return $this->opacity = 0.0;
-        }
-
-        if ($opacity >= 1.0) {
-            return $this->opacity = 1.0;
-        }
+        ColourValidator::isValidOpacity($opacity);
 
         return $this->opacity = $opacity;
     }

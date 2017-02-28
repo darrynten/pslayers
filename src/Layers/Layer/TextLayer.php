@@ -4,6 +4,7 @@ namespace DarrynTen\Pslayers\Layers\Layer;
 
 use DarrynTen\Pslayers\Layers\BaseLayer;
 use DarrynTen\Pslayers\Validators\ColourValidator;
+use DarrynTen\Pslayers\Validators\TextLayerValidator;
 
 /**
  * Pslayers Text Layer
@@ -273,6 +274,8 @@ class TextLayer extends BaseLayer
             return $this->fontStretch;
         }
 
+        TextLayerValidator::isValidFontStretch($fontStretch);
+
         return $this->fontStretch = $fontStretch;
     }
 
@@ -288,6 +291,8 @@ class TextLayer extends BaseLayer
         if ($fontStyle === null) {
             return $this->fontStyle;
         }
+
+        TextLayerValidator::isValidFontStyle($fontStyle);
 
         return $this->fontStyle = $fontStyle;
     }
@@ -340,6 +345,8 @@ class TextLayer extends BaseLayer
         if ($fillOpacity === null) {
             return $this->fillOpacity;
         }
+
+        ColourValidator::isValidOpacity($fillOpacity);
 
         return $this->fillOpacity = $fillOpacity;
     }
@@ -407,6 +414,8 @@ class TextLayer extends BaseLayer
             return $this->textAlignment;
         }
 
+        TextLayerValidator::isValidTextAlignment($textAlignment);
+
         return $this->textAlignment = $textAlignment;
     }
 
@@ -422,6 +431,8 @@ class TextLayer extends BaseLayer
         if ($textDecoration === null) {
             return $this->textDecoration;
         }
+
+        TextLayerValidator::isValidTextDecoration($textDecoration);
 
         return $this->textDecoration = $textDecoration;
     }
