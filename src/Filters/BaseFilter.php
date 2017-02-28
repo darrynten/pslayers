@@ -2,7 +2,7 @@
 
 namespace DarrynTen\Pslayers\Filters;
 
-use DarrynTen\Pslayers\PslayersException;
+use DarrynTen\Pslayers\Exceptions\PslayersException;
 
 /**
  * Pslayers Filter Item

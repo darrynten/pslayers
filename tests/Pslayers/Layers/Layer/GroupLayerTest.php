@@ -49,7 +49,6 @@ class GroupLayerTest extends \PHPUnit_Framework_TestCase
             'height' => 200,
             'group' => $collection
         ]);
-
     }
 
     public function testGetGroupLayerArray()

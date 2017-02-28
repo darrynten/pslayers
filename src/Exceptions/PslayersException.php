@@ -9,7 +9,7 @@
  * @link     https://github.com/darrynten/pslayers
  */
 
-namespace DarrynTen\Pslayers;
+namespace DarrynTen\Pslayers\Exceptions;
 
 use \Exception;
 

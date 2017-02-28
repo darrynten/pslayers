@@ -2,6 +2,8 @@
 
 namespace DarrynTen\Pslayers;
 
+use DarrynTen\Pslayers\Config\Config;
+use DarrynTen\Pslayers\Layers\BaseLayer;
 use DarrynTen\Pslayers\Layers\LayerCollection;
 
 /**
@@ -56,7 +58,7 @@ class Pslayers
      * @param BaseLayer $layer The layer to add
      * @param int $index The z-index to assign to
      */
-    public function addLayer($layer, int $index)
+    public function addLayer(BaseLayer $layer, int $index)
     {
         $this->layers->addLayerToCollection($layer, $index);
     }

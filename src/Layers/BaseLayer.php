@@ -3,7 +3,7 @@
 namespace DarrynTen\Pslayers\Layers;
 
 use Imagick;
-use DarrynTen\Pslayers\PslayersException;
+use DarrynTen\Pslayers\Exceptions\PslayersException;
 
 /**
  * Pslayers Layer Item
