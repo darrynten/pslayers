@@ -46,6 +46,8 @@ class SolidLayer extends BaseLayer
      */
     public function colour(string $colour = null)
     {
+        ColourValidator::isValidColour($colour);
+
         if ($colour === null) {
             return $this->colour;
         }
