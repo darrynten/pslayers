@@ -96,7 +96,6 @@ class TextLayerValidator
         return true;
     }
 
-
     /**
      * Check if valid font stretch
      *
@@ -110,7 +109,6 @@ class TextLayerValidator
 
         return true;
     }
-
 
     /**
      * Check if valid font style
