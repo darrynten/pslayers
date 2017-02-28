@@ -41,10 +41,10 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(LayerCollection::class, $instance->layers);
         $this->assertNotEmpty($instance->layers);
         $this->assertNotEmpty($instance->layers->collection);
-        $this->assertEmpty($instance->layers->collection[0]);
+        $this->assertArrayNotHasKey(0, $instance->layers->collection);
         $this->assertNotEmpty($instance->layers->collection[1]);
         $this->assertEquals('aaa', $instance->layers->collection[1]->id);
-        $this->assertEmpty($instance->layers->collection[2]);
+        $this->assertArrayNotHasKey(2, $instance->layers->collection);
     }
 
     public function testValidation()
