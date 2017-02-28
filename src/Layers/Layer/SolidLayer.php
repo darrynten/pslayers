@@ -3,6 +3,7 @@
 namespace DarrynTen\Pslayers\Layers\Layer;
 
 use DarrynTen\Pslayers\Layers\BaseLayer;
+use DarrynTen\Pslayers\Validators\ColourValidator;
 
 /**
  * Pslayers Blank Layer
@@ -45,6 +46,8 @@ class SolidLayer extends BaseLayer
      */
     public function colour(string $colour = null)
     {
+        ColourValidator::isValidColour($colour);
+
         if ($colour === null) {
             return $this->colour;
         }

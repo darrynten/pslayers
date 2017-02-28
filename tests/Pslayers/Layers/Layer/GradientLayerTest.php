@@ -31,11 +31,11 @@ class GradientLayerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $layer->startColour());
         $this->assertEquals('', $layer->endColour());
 
-        $layer->startColour('text');
-        $layer->endColour('text2');
+        $layer->startColour('#000');
+        $layer->endColour('#FFF');
 
-        $this->assertEquals('text', $layer->startColour());
-        $this->assertEquals('text2', $layer->endColour());
+        $this->assertEquals('#000', $layer->startColour());
+        $this->assertEquals('#FFF', $layer->endColour());
     }
 
     public function testGetGradientLayerArray()
@@ -48,8 +48,8 @@ class GradientLayerTest extends \PHPUnit_Framework_TestCase
             'positionY' => 1,
             'opacity' => 1.0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'startColour' => '',
-            'endColour' => '',
+            'startColour' => null,
+            'endColour' => null,
         ];
 
         $layer = new GradientLayer([

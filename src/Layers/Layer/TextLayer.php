@@ -3,6 +3,7 @@
 namespace DarrynTen\Pslayers\Layers\Layer;
 
 use DarrynTen\Pslayers\Layers\BaseLayer;
+use DarrynTen\Pslayers\Validators\ColourValidator;
 
 /**
  * Pslayers Text Layer
@@ -169,11 +170,11 @@ class TextLayer extends BaseLayer
         );
 
         $this->underColour(
-            !empty($config['underColour']) ? $config['underColour'] : ''
+            !empty($config['underColour']) ? $config['underColour'] : null
         );
 
         $this->fillColour(
-            !empty($config['fillColour']) ? $config['fillColour'] : ''
+            !empty($config['fillColour']) ? $config['fillColour'] : null
         );
 
         $this->fillOpacity(
@@ -181,7 +182,7 @@ class TextLayer extends BaseLayer
         );
 
         $this->strokeColour(
-            !empty($config['strokeColour']) ? $config['strokeColour'] : ''
+            !empty($config['strokeColour']) ? $config['strokeColour'] : null
         );
 
         $this->strokeWidth(
@@ -300,6 +301,8 @@ class TextLayer extends BaseLayer
      */
     public function underColour(string $underColour = null)
     {
+        ColourValidator::isValidColour($underColour);
+
         if ($underColour === null) {
             return $this->underColour;
         }
@@ -316,6 +319,8 @@ class TextLayer extends BaseLayer
      */
     public function fillColour(string $fillColour = null)
     {
+        ColourValidator::isValidColour($fillColour);
+
         if ($fillColour === null) {
             return $this->fillColour;
         }
@@ -348,6 +353,8 @@ class TextLayer extends BaseLayer
      */
     public function strokeColour(string $strokeColour = null)
     {
+        ColourValidator::isValidColour($strokeColour);
+
         if ($strokeColour === null) {
             return $this->strokeColour;
         }
