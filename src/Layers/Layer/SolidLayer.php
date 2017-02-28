@@ -3,6 +3,7 @@
 namespace DarrynTen\Pslayers\Layers\Layer;
 
 use DarrynTen\Pslayers\Layers\BaseLayer;
+use DarrynTen\Pslayers\Validators\ColourValidator;
 
 /**
  * Pslayers Blank Layer

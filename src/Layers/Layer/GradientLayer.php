@@ -38,6 +38,14 @@ class GradientLayer extends BaseLayer
      */
     public function __construct(array $config)
     {
+        $this->startColour(
+            !empty($config['startColour']) ? $config['startColour'] : null
+        );
+
+        $this->endColour(
+            !empty($config['endColour']) ? $config['endColour'] : null
+        );
+
         parent::__construct($config);
     }
 

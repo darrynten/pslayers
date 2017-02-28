@@ -48,8 +48,8 @@ class GradientLayerTest extends \PHPUnit_Framework_TestCase
             'positionY' => 1,
             'opacity' => 1.0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'startColour' => '',
-            'endColour' => '',
+            'startColour' => null,
+            'endColour' => null,
         ];
 
         $layer = new GradientLayer([
