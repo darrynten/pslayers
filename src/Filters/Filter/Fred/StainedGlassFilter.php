@@ -1,6 +1,6 @@
 <?php
 
-namespace DarrynTen\Pslayers\Filters\Filter;
+namespace DarrynTen\Pslayers\Filters\Filter\Fred;
 
 use DarrynTen\Pslayers\Filters\BaseFilter;
 
