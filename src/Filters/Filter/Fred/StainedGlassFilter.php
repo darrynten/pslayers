@@ -2,6 +2,9 @@
 
 namespace DarrynTen\Pslayers\Filters\Filter\Fred;
 
+use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Exception\ProcessFailedException;
+
 use DarrynTen\Pslayers\Filters\BaseFilter;
 
 /**
@@ -15,7 +18,7 @@ use DarrynTen\Pslayers\Filters\BaseFilter;
  */
 class StainedGlassFilter extends BaseFilter
 {
-    const SCRIPT_PATH = __DIR__.'/../../../vendor/mxnr/imagic-scripts/bin/stainedglass';
+    const SCRIPT_PATH = __DIR__.'/../../../../vendor/mxnr/imagic-scripts/bin/stainedglass';
 
     /**
      * Kind of stainedglass cell shape; choices are: square (or s), hexagon (or h), random (or r)
@@ -45,7 +48,7 @@ class StainedGlassFilter extends BaseFilter
      *
      * @var integer
      */
-    private $ncolors;
+    private $ncolors = 32;
 
     /**
      * Brightness value in percent for output image
@@ -78,7 +81,7 @@ class StainedGlassFilter extends BaseFilter
      *
      * @var integer
      */
-    private $rseed;
+    private $rseed = 12;
 
     /**
      * Construct
@@ -116,20 +119,28 @@ class StainedGlassFilter extends BaseFilter
      */
     public function render($imagePath)
     {
-        return exec(
-            sprintf(
-                 '%s -k %s -s %s -o %s -n %s -b %s -e %s -t %s -r %s %s',
-                self::SCRIPT_PATH,
-                $this->kind,
-                $this->size,
-                $this->offset,
-                $this->ncolors,
-                $this->bright,
-                $this->ecolor,
-                $this->thick,
-                $this->rseed,
-                $imagePath
-            )
+        $command = sprintf(
+            '%s -k %s -s %s -o %s -n %s -b %s -e %s -t %s -r %s %s %s',
+            self::SCRIPT_PATH,
+            $this->kind,
+            $this->size,
+            $this->offset,
+            $this->ncolors,
+            $this->bright,
+            $this->ecolor,
+            $this->thick,
+            $this->rseed,
+            $imagePath,
+            '/tmp/temp.png'
         );
+
+        $process = new Process($command);
+        $process->run();
+
+        if (!$process->isSuccessful()) {
+            throw new ProcessFailedException($process);
+        }
+
+        return $process->getOutput();
     }
 }
