@@ -120,38 +120,4 @@ class StainedGlassFilter extends FredBaseFilter
             throw new PslayersException('Invalid stained glass kind.');
         }
     }
-    /**
-     * @param string $imagePath rendered image path
-     *
-     * @return string
-     */
-    // public function render($imagePath)
-    // {
-    //     $tempFile = tmpfile();
-    //
-    //     $command = sprintf(
-    //         '%s -k %s -s %s -o %s -n %s -b %s -e %s -t %s -r %s %s %s',
-    //         self::SCRIPT_PATH,
-    //         $this->kind,
-    //         $this->size,
-    //         $this->offset,
-    //         $this->ncolors,
-    //         $this->bright,
-    //         $this->ecolor,
-    //         $this->thick,
-    //         $this->rseed,
-    //         $imagePath,
-    //         $imagePath
-    //         // stream_get_meta_data($tempFile)['uri']
-    //     );
-    //
-    //     $process = new Process($command);
-    //     $process->run();
-    //
-    //     if (!$process->isSuccessful()) {
-    //         throw new ProcessFailedException($process);
-    //     }
-    //
-    //     return $tempFile;
-    // }
 }
