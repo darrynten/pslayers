@@ -4,14 +4,23 @@ namespace DarrynTen\Pslayers\Tests;
 
 use Imagick;
 use DarrynTen\Pslayers\Filters\Filter\BlankFilter;
+use DarrynTen\Pslayers\Exceptions\PslayersException;
 
 class BlankFiltersTest extends \PHPUnit_Framework_TestCase
 {
+    public function getTestImage()
+    {
+        $image = new \Imagick;
+        $image->newPseudoImage(800, 200, 'fractal:');
+        $image->setImageFormat('png');
+        return $image;
+    }
+
     public function testNewBlankFilter()
     {
         $filter = new BlankFilter([
             'id' => 1,
-        ]);
+        ], $this->getTestImage());
 
         $this->assertInstanceOf(BlankFilter::class, $filter);
         $this->assertObjectHasAttribute('id', $filter);
@@ -25,7 +34,7 @@ class BlankFiltersTest extends \PHPUnit_Framework_TestCase
 
         $filter = new BlankFilter([
             'id' => 1,
-        ]);
+        ], $this->getTestImage());
 
         $this->assertEquals($expected, $filter->getFilterDetailsArray());
     }
@@ -38,8 +47,17 @@ class BlankFiltersTest extends \PHPUnit_Framework_TestCase
 
         $filter = new BlankFilter([
             'id' => 1,
-        ]);
+        ], $this->getTestImage());
 
         $this->assertEquals($expected, $filter->getFilterDetailsJson());
+    }
+
+    public function testGetBlankFilterMissingImage()
+    {
+        $this->expectException(PslayersException::class);
+
+        $filter = new BlankFilter([
+            'id' => 1,
+        ], new \Imagick);
     }
 }
