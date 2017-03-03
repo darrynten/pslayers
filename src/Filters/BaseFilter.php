@@ -32,13 +32,6 @@ abstract class BaseFilter implements FilterInterface
     protected $image;
 
     /**
-     * Image Data
-     *
-     * The raw image data
-     */
-    protected $imageBlob;
-
-    /**
      * Construct
      *
      * @param array $config
@@ -58,7 +51,6 @@ abstract class BaseFilter implements FilterInterface
         $this->id = $config['id'];
 
         $this->image = $image;
-        $this->imageBlob = $image->getImageBlob();
     }
 
     /**
