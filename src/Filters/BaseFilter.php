@@ -25,17 +25,32 @@ abstract class BaseFilter implements FilterInterface
     public $id;
 
     /**
+     * Image
+     *
+     * The image we're filtering
+     */
+    protected $image;
+
+    /**
      * Construct
      *
      * @param array $config
      */
-    public function __construct(array $config)
+    public function __construct(array $config, \Imagick $image)
     {
         if (!isset($config['id'])) {
             throw new PslayersException('No ID Set for Filter');
         }
 
+        $imageSize = $image->getSize();
+
+        if (0 === $imageSize['columns'] && 0 === $imageSize['rows']) {
+            throw new PslayersException('Empty Imagick object provided');
+        }
+
         $this->id = $config['id'];
+
+        $this->image = $image;
     }
 
     /**
