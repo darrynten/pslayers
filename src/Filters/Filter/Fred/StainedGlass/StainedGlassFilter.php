@@ -19,8 +19,21 @@ use DarrynTen\Pslayers\Exceptions\PslayersException;
  */
 class StainedGlassFilter extends FredBaseFilter
 {
+    /**
+     * The Fred command to run. The path to the bash script is
+     * defined in the base fred filter class.
+     *
+     * @var string $command
+     */
     protected $command = 'stainedglass';
 
+    /**
+     * Valid options for stained glass types.
+     *
+     * Used by the validation method in this class
+     *
+     * @var array $validStainedGlassKinds
+     */
     private static $validStainedGlassKinds = [
         'r',
         'random',
@@ -30,6 +43,13 @@ class StainedGlassFilter extends FredBaseFilter
         'square',
     ];
 
+    /**
+     * The switch map
+     *
+     * Defines the construct of the renderer and all validation.
+     *
+     * @param array $switchMap
+     */
     protected $switchMap = [
         'kind' => 'k',
         'size' => 's',
@@ -46,22 +66,22 @@ class StainedGlassFilter extends FredBaseFilter
      *
      * @var string
      */
-    protected $kind = 'random';
+    protected $kind;
 
     /**
      * Size of cell
      *
      * @var integer
      */
-    protected $size = 16;
+    protected $size;
 
     /**
      * Random offset amount
      * Only applies to kind=random
      *
-     * @var int
+     * @var integer
      */
-    protected $offset = 6;
+    protected $offset;
 
     /**
      * Number of desired reduced colors for the output
@@ -69,14 +89,14 @@ class StainedGlassFilter extends FredBaseFilter
      *
      * @var integer
      */
-    protected $ncolors = 32;
+    protected $ncolors;
 
     /**
      * Brightness value in percent for output image
      *
      * @var integer
      */
-    protected $bright = 100;
+    protected $bright;
 
     /**
      * Color for edge or border around each cell
@@ -84,15 +104,15 @@ class StainedGlassFilter extends FredBaseFilter
      *
      * @var string
      */
-    protected $ecolor = 'black';
+    protected $ecolor;
 
     /**
      * Thickness for edge or border around each cell
      * Zero means no edge or border
      *
-     * @var
+     * @var integer
      */
-    protected $thick = 1;
+    protected $thick;
 
     /**
      * Random number seed value
@@ -102,16 +122,16 @@ class StainedGlassFilter extends FredBaseFilter
      *
      * @var integer
      */
-    protected $rseed = 12;
+    protected $rseed;
 
     public function __construct(array $config, \Imagick $image)
     {
+        parent::__construct($config, $image);
+
         // Perform any custom validation
         if (isset($config['kind'])) {
             self::isValidStainedGlassKind($config['kind']);
         }
-
-        parent::__construct($config, $image);
     }
 
     public static function isValidStainedGlassKind($kind)
