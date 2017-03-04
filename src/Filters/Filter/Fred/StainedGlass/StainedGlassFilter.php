@@ -124,6 +124,12 @@ class StainedGlassFilter extends FredBaseFilter
      */
     protected $rseed;
 
+    /**
+     * StainedGlassFilter constructor.
+     *
+     * @param array $config
+     * @param \Imagick $image
+     */
     public function __construct(array $config, \Imagick $image)
     {
         parent::__construct($config, $image);
@@ -134,6 +140,11 @@ class StainedGlassFilter extends FredBaseFilter
         }
     }
 
+    /**
+     * @param $kind
+     *
+     * @throws PslayersException
+     */
     public static function isValidStainedGlassKind($kind)
     {
         if (!in_array($kind, self::$validStainedGlassKinds)) {
