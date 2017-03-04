@@ -5,7 +5,8 @@
   "require": {
     "php": "^5.5.9 || ^7.0",
     "guzzlehttp/guzzle": "^6.2.1",
-    "darrynten/any-cache": "^1.0"
+    "darrynten/any-cache": "^1.0",
+    "symfony/process": "^3.2"
   },
   "repositories": [
     {

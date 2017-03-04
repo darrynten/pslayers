@@ -74,7 +74,7 @@ class PslayersExceptionTest extends \PHPUnit_Framework_TestCase
     {
         $this->expectException(PslayersException::class);
 
-        $instance = new BlankFilter([]);
+        $instance = new BlankFilter([], new \Imagick);
     }
 
     public function testBadColour()

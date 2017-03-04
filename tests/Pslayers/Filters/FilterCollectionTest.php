@@ -7,6 +7,14 @@ use DarrynTen\Pslayers\Filters\FilterCollection;
 
 class FilterCollectionTest extends \PHPUnit_Framework_TestCase
 {
+    public function getTestImage()
+    {
+        $image = new \Imagick;
+        $image->newPseudoImage(800, 200, 'fractal:');
+        $image->setImageFormat('png');
+        return $image;
+    }
+
     public function testNewFilters()
     {
         $filters = new FilterCollection;
@@ -18,7 +26,7 @@ class FilterCollectionTest extends \PHPUnit_Framework_TestCase
     {
         $filter = new BlankFilter([
             'id' => 1,
-        ]);
+        ], $this->getTestImage());
 
         $expected = [
             'filters' => [
@@ -44,7 +52,7 @@ class FilterCollectionTest extends \PHPUnit_Framework_TestCase
 
         $filter = new BlankFilter([
             'id' => 1,
-        ]);
+        ], $this->getTestImage());
         $filters = new FilterCollection;
 
         $filters->addFilterToCollection($filter, 1);
