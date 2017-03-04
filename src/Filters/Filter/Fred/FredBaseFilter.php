@@ -17,7 +17,7 @@ use DarrynTen\Pslayers\Filters\BaseFilter;
  * @license  MIT <https://github.com/darrynten/psfilters/LICENSE>
  * @link     https://github.com/darrynten/psfilters
  */
-abstract class FredBaseFilter extends BaseFilter implements FredFilterInterface
+abstract class FredBaseFilter extends BaseFilter
 {
     // Path to the bash files
     const BIN_FOLDER = __DIR__.'/../../../../vendor/mxnr/imagic-scripts/bin';
