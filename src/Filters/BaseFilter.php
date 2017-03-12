@@ -27,6 +27,8 @@ abstract class BaseFilter implements FilterInterface
     /**
      * Image
      *
+     * An Imagick object.
+     *
      * The image we're filtering
      */
     protected $image;
@@ -34,7 +36,10 @@ abstract class BaseFilter implements FilterInterface
     /**
      * Construct
      *
+     * Pass in an Imagick representation of the image to filter.
+     *
      * @param array $config
+     * @param \Imagick $image
      */
     public function __construct(array $config, \Imagick $image)
     {
