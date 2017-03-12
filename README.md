@@ -270,4 +270,32 @@ This needs to get its render triggered when appropriate
 
 ## Filters
 
-Perhaps groups of filters?
+There is support for filters
+
+### Standard Filters
+
+These are the base filters included with pslayers.
+
+We have designed them to be easily extensible and creatable, and will
+happily accept new filters into the core library should they be up to
+scratch. Contributions are welcome.
+
+### Fred's Filters Filter Pack
+
+> We've included this by default, but you need to ask Fred if you're
+wanting to use them for anything other than personal use.
+
+These are wrapped up versions of the infamous Fred's Imagick scripts that
+have been implemented as safely and securely as we possibly could.
+
+In order to keep things consistent we do not support any default values
+with any of these filters.
+
+We have not implemented all the filters, but there is a solid base there
+that should make it easy for anyone to quickly add one of his filters.
+
+This also means that you can wrap up any bash script you like, but please,
+use this wisely. We will only accept any contributions along these lines
+after careful vetting.
+
+#### Implemented Fred Filter and Usage
