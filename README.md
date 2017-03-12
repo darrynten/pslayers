@@ -1,13 +1,23 @@
 # pslayers
 
-Image layering with compositing
+Powerful and fully featured PHP library that features photoshop-style
+image layering, compositing, filtering, blending and masking.
 
 Uses Imagick and PHP 7+
 
-##
+## Introduction
 
-Holds and manages layers of imagick canvases for easy manipulation and
-blending.
+We needed to give [buzzbot.ai](https://buzzbot.ai) a way to express
+herself visually, so we gave her photoshop-level image management and
+manipulation capabilities.
+
+This is the core package that our bots use during their Generation
+phases. As such it has been designed from the ground up to be simple
+to use, but to also allow for maximum flexibility.
+
+The core function of this package is to provide an easy way to layer
+images and then composite them together.
+
 
 ### Basic Usage
 
@@ -107,8 +117,6 @@ $collection->addLayerToCollection($layer, 1);
 
 #### Rendering
 
-Not yet implemented
-
 You can call the render method on your collection which will render
 up from index 0
 
@@ -160,7 +168,11 @@ $layer->strokeOpacity(1.0);
 
 ##### Gradient Layer
 
-Not fully implemented
+Currently only a start-to-finish top-to-bottom solid-to-solid gradient
+layer. This will be expanded upon.
+
+Like its cousin it's also not 100% implemented, but it provides the most
+basic of radial gradient that Imagick has to offer.
 
 ```php
 $layer = new GradientLayer($config);
@@ -170,6 +182,15 @@ $layer->endColour('#000000');
 ```
 
 There is no start or end or direction yet
+
+#### Radial Gradient Layer
+
+```php
+$layer = new RadialGradientLayer($config);
+
+$layer->startColour('#FFFFFF');
+$layer->endColour('#000000');
+```
 
 ##### Solid Layer
 
@@ -181,7 +202,30 @@ $layer = new SolidLayer($config);
 $layer->colour('#FFFFFF');
 ```
 
+##### Pattern Layer
+
+A layer that tiles a standard Imagick pattern. You can add optional
+scaling and scale filtering values.
+
+```php
+$layer = new PatternLayer($config);
+
+$layer->pattern('bricks');
+$layer->scale(2);
+$layer->scaleFilter(Imagick::FILTER_BICUBIC);
+```
+
+##### Plasma Layer
+
+Generates the standard Imagick `plasma:` style Psuedoimage.
+
+```php
+$layer = new PlasmaLayer($config);
+```
+
 ##### Group Layer
+
+not 100% implemented
 
 This is basically a layer that contains another collection of layers
 that can each have their own compositing trees, so you can have greater
@@ -199,25 +243,83 @@ $layer->group->addLayerToCollection($newTextLayer, 2);
 
 This needs to get its render triggered when appropriate
 
+## Compositing
+
+A big part of the power of this comes from the compositing that is
+available.
+
+You can add a composite mode to any layer and during render it will be
+applied.
+
+Note that while you can apply multiple filters to layers, you can
+only apply a single composite. If you want to achieve multiple composite
+mixes at once you can achieve this by making a group layer with copies
+of the same layer in there and composite each copy the way you want.
+
+Supported composite modes
+
+* Add - The image + the image below
+* Atop - The result is the same shape as image, with composite image obscuring image where the image shapes overlap
+* Blend - Blends the image
+* Bump Map - The same as multiply, except the source is converted to grayscale first.
+* Colour Burn - Darkens the destination image to reflect the source image
+* Colour Dodge - Brightens the destination image to reflect the source image
+* Colourise - Colorizes the target image using the composite image
+* Copy - Copies the source image on the target image
+* Copy Black - Copies black from the source to target
+* Copy Blue - Copies blue from the source to target
+* Copy Cyan - Copies cyan from the source to target
+* Copy Green - Copies green from the source to target
+* Copy Magenta - Copies magenta from the source to target
+* Copy Opacity - Copies opacity from the source to target
+* Copy Red - Copies red from the source to target
+* Copy Yellow - Copies yellow from the source to target
+* Darken - Darkens the target image
+* Destination Atop - The part of the destination lying inside of the source is composited over the source and replaces the destination
+* Destination In - The parts inside the source replace the target
+* Destination Out - The parts outside the source replace the target
+* Destination Over - Target replaces the source
+* Difference - Subtracts the darker of the two constituent colors from the lighter
+* Displace - Shifts target image pixels as defined by the source
+* Dissolve - Dissolves the source in to the target
+* Exclusion - Produces an effect similar to that of Difference, but appears as lower contrast
+* Hard Light - Multiplies or screens the colors, dependent on the source color value
+* Hue - Modifies the hue of the target as defined by source
+* Composite In - Composites source into the target
+* Lighten - Lightens the target as defined by source
+* Luminise - Luminizes the target as defined by source
+* Minus - Subtracts the source from the target
+* Modulate - Modulates the target brightness, saturation and hue as defined by source
+* Multiply - Multiplies the target to the source
+* Composite Out - Composites outer parts of the source on the target
+* Composite Over - Composites source over the target
+* Overlay - Overlays the source on the target
+* Plus - Adds the source to the target
+* Replace - Replaces the target with the source
+* Saturate - Saturates the target as defined by the source
+* Screen - The source and destination are complemented and then multiplied and then replace the destination
+* Soft Light - Darkens or lightens the colors, dependent on the source
+* Source Atop - The part of the source lying inside of the destination is composited onto the destination
+* Source In - The part of the source lying inside of the destination replaces the destination
+* Source Out - The part of the source lying outside of the destination replaces the destination
+* Source Over - The source replaces the destination
+* Subtract - Subtract the colors in the source image from the destination image
+* Threshold - The source is composited on the target as defined by source threshold
+* XOR - The part of the source that lies outside of the destination is combined with the part of the destination that lies outside of the source
+
 ## TODO
 
 * z-index management
 * paramaters below
 * blend/mix modes below
 
-### Layer Parameters
+### Exaxt PS Layer Blend Modes for Reference
 
 * Brightness
 * Contrast
-* Opacity
 * Saturation
 * Tint
 * Hue
-
-### Layer Blend Modes
-
-* Normal
-* Dissolve
 
 #### Darken
 
@@ -249,7 +351,6 @@ This needs to get its render triggered when appropriate
 
 * Difference
 * Exclusion
-
 
 #### Cancelleation
 
@@ -298,4 +399,12 @@ This also means that you can wrap up any bash script you like, but please,
 use this wisely. We will only accept any contributions along these lines
 after careful vetting.
 
-#### Implemented Fred Filter and Usage
+### Implemented Fred Filter and Usage
+
+#### Stained Glass
+
+Gives a stained glass effect
+
+#### Dice
+
+Dices up the images

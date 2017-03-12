@@ -14,6 +14,7 @@ use DarrynTen\Pslayers\Layers\Layer\GradientLayer;
 use DarrynTen\Pslayers\Layers\Layer\RadialGradientLayer;
 use DarrynTen\Pslayers\Layers\Layer\TextLayer;
 use DarrynTen\Pslayers\Layers\LayerCollection;
+use DarrynTen\Pslayers\Filters\FilterCollection;
 use DarrynTen\Pslayers\Filters\Filter\Fred\StainedGlass\StainedGlassFilter;
 use DarrynTen\Pslayers\Filters\Filter\Fred\Dice\DiceFilter;
 
@@ -125,7 +126,6 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         $instance->addLayer($radialGradientLayer, 2);
 
-
         // pattern layer
 
         $patternLayer = new PatternLayer([
@@ -143,9 +143,8 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         $instance->addLayer($patternLayer, 3);
 
-
         // plasma layer
-        $filter = new StainedGlassFilter([
+        $stainedGlassFilter = new StainedGlassFilter([
             'id' => 'master-layer-stained-glass-filter',
             'kind' => 'random',
             'size' => 50,
@@ -157,8 +156,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'rseed' => rand(),
         ]);
 
-        // plasma layer
-        $filter = new DiceFilter([
+        $diceFilter = new DiceFilter([
             'id' => 'master-layer-dice-filter',
             'size' => 100,
             'percent' => 100,
@@ -166,6 +164,11 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'radii' => '0,0',
             'rounding' => '0,0',
         ]);
+
+        // TODO
+        $filterCollection = new FilterCollection();
+        $filterCollection->addFilterToCollection($stainedGlassFilter, 0);
+        $filterCollection->addFilterToCollection($diceFilter, 0);
 
         $plasmaLayer = new PlasmaLayer([
             'id' => 'master-layer-plasma-layer',
@@ -176,7 +179,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'positionY' => 0,
             'composite' => Imagick::COMPOSITE_DARKEN,
             'filters' => [
-                $filter
+                $diceFilter
             ],
         ]);
 
