@@ -13,6 +13,7 @@ class SolidLayerTest extends \PHPUnit_Framework_TestCase
             'id' => 1,
             'width' => 500,
             'height' => 500,
+            'colour' => '#94F',
         ]);
 
         $this->assertInstanceOf(SolidLayer::class, $layer);
@@ -24,10 +25,9 @@ class SolidLayerTest extends \PHPUnit_Framework_TestCase
         $layer = new SolidLayer([
             'id' => 1,
             'width' => 200,
-            'height' => 2000
+            'height' => 200,
+            'colour' => '#04d93e',
         ]);
-
-        $this->assertNull($layer->colour());
 
         $layer->colour('#000');
         $this->assertEquals('#000', $layer->colour());
@@ -48,7 +48,7 @@ class SolidLayerTest extends \PHPUnit_Framework_TestCase
             'positionY' => 1,
             'opacity' => 1.0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'colour' => '',
+            'colour' => '#04d93e',
         ];
 
         $layer = new SolidLayer([
@@ -58,6 +58,7 @@ class SolidLayerTest extends \PHPUnit_Framework_TestCase
             'opacity' => 1.0,
             'positionX' => 1,
             'positionY' => 1,
+            'colour' => '#04d93e',
         ]);
 
         $this->assertEquals($expected, $layer->getLayerDetailsArray());
@@ -73,13 +74,14 @@ class SolidLayerTest extends \PHPUnit_Framework_TestCase
             'positionX' => 0,
             'positionY' => 0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'colour' => null,
+            'colour' => '#F93',
         ]);
 
         $layer = new SolidLayer([
             'id' => 1,
             'width' => -100,
             'height' => -100,
+            'colour' => '#F93',
         ]);
 
         $this->assertEquals($expected, $layer->getLayerDetailsJson());

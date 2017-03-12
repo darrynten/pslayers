@@ -51,13 +51,4 @@ class BlankFiltersTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $filter->getFilterDetailsJson());
     }
-
-    public function testGetBlankFilterMissingImage()
-    {
-        $this->expectException(PslayersException::class);
-
-        $filter = new BlankFilter([
-            'id' => 1,
-        ], new \Imagick);
-    }
 }

@@ -7,7 +7,7 @@ use DarrynTen\Pslayers\Validators\ColourValidator;
 use DarrynTen\Pslayers\Exceptions\PslayersException;
 
 /**
- * Pslayers Gradient Layer
+ * Pslayers Radial Gradient Layer
  *
  * TODO very incomplete
  *
@@ -17,7 +17,7 @@ use DarrynTen\Pslayers\Exceptions\PslayersException;
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class GradientLayer extends BaseLayer
+class RadialGradientLayer extends BaseLayer
 {
     /**
      * Start Colour
@@ -42,7 +42,7 @@ class GradientLayer extends BaseLayer
     {
         parent::__construct($config);
         if (!isset($config['startColour']) || !isset($config['endColour'])) {
-            throw new PslayersException('Missing Gradient Layer start and end colour.');
+            throw new PslayersException('Missing Radial Gradient Layer start and end colour.');
         }
 
         $this->startColour(
@@ -53,7 +53,7 @@ class GradientLayer extends BaseLayer
             !empty($config['endColour']) ? $config['endColour'] : '#000'
         );
 
-        $this->canvas->newPseudoImage($config['width'], $config['height'], sprintf('gradient:%s-%s', $config['startColour'], $config['endColour']));
+        $this->canvas->newPseudoImage($config['width'], $config['height'], sprintf('radial-gradient:%s-%s', $config['startColour'], $config['endColour']));
     }
 
     /**

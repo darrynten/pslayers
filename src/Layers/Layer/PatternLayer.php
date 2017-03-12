@@ -7,7 +7,7 @@ use DarrynTen\Pslayers\Validators\ColourValidator;
 use DarrynTen\Pslayers\Exceptions\PslayersException;
 
 /**
- * Pslayers Gradient Layer
+ * Pslayers Pattern Layer
  *
  * TODO very incomplete
  *
@@ -17,7 +17,7 @@ use DarrynTen\Pslayers\Exceptions\PslayersException;
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class GradientLayer extends BaseLayer
+class PatternLayer extends BaseLayer
 {
     /**
      * Start Colour
@@ -41,37 +41,44 @@ class GradientLayer extends BaseLayer
     public function __construct(array $config)
     {
         parent::__construct($config);
-        if (!isset($config['startColour']) || !isset($config['endColour'])) {
-            throw new PslayersException('Missing Gradient Layer start and end colour.');
+
+        if (!isset($config['pattern'])) {
+            throw new PslayersException('Missing Pattern Layer pattern.');
         }
 
-        $this->startColour(
-            !empty($config['startColour']) ? $config['startColour'] : '#FFF'
-        );
+        if (!isset($config['scale'])) {
+            throw new PslayersException('Missing Pattern Layer scale factor.');
+        }
 
-        $this->endColour(
-            !empty($config['endColour']) ? $config['endColour'] : '#000'
-        );
+        if (!isset($config['scaleFilter'])) {
+            throw new PslayersException('Missing Pattern Layer scale filter.');
+        }
 
-        $this->canvas->newPseudoImage($config['width'], $config['height'], sprintf('gradient:%s-%s', $config['startColour'], $config['endColour']));
+        $this->pattern($config['pattern']);
+        $this->scale($config['scale']);
+
+        $scaleWidth = $config['width'] / $config['scale'];
+        $scaleHeight = $config['height'] / $config['scale'];
+
+        $this->canvas->newPseudoImage($scaleWidth, $scaleHeight, sprintf('pattern:%s', $this->pattern));
+
+        $this->canvas->resizeImage($config['width'], $config['height'], $config['scaleFilter'], 1);
     }
 
     /**
-     * Get and set the start colour
+     * Get and set the pattern
      *
-     * @param null|int $colour The colour
+     * @param null|int $pattern
      *
      * @return boolean|string
      */
-    public function startColour(string $colour = null)
+    public function pattern(string $pattern = null)
     {
-        ColourValidator::isValidColour($colour);
-
-        if ($colour === null) {
-            return $this->startColour;
+        if ($pattern === null) {
+            return $this->pattern;
         }
 
-        return $this->startColour = $colour;
+        return $this->pattern = $pattern;
     }
 
     /**
@@ -81,15 +88,13 @@ class GradientLayer extends BaseLayer
      *
      * @return boolean|string
      */
-    public function endColour(string $colour = null)
+    public function scale(int $scale = null)
     {
-        ColourValidator::isValidColour($colour);
-
-        if ($colour === null) {
-            return $this->endColour;
+        if ($scale === null) {
+            return $this->scale;
         }
 
-        return $this->endColour = $colour;
+        return $this->scale = $scale;
     }
 
     /**
@@ -107,8 +112,8 @@ class GradientLayer extends BaseLayer
             'positionX' => $this->positionX(),
             'positionY' => $this->positionY(),
             'composite' => $this->composite(),
-            'startColour' => $this->startColour(),
-            'endColour' => $this->endColour(),
+            'pattern' => $this->pattern(),
+            'scale' => $this->scale(),
         ];
     }
 }

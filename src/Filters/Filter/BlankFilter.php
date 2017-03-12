@@ -20,9 +20,9 @@ class BlankFilter extends BaseFilter
      *
      * @param array $config
      */
-    public function __construct(array $config, \Imagick $image)
+    public function __construct(array $config)
     {
-        parent::__construct($config, $image);
+        parent::__construct($config);
     }
 
     /**

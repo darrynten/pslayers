@@ -7,7 +7,7 @@ use DarrynTen\Pslayers\Validators\ColourValidator;
 use DarrynTen\Pslayers\Exceptions\PslayersException;
 
 /**
- * Pslayers Blank Layer
+ * Pslayers Plasma Layer
  *
  * @category Layer
  * @package  Pslayers
@@ -15,15 +15,8 @@ use DarrynTen\Pslayers\Exceptions\PslayersException;
  * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
  * @link     https://github.com/darrynten/pslayers
  */
-class SolidLayer extends BaseLayer
+class PlasmaLayer extends BaseLayer
 {
-    /**
-     * Fill Colour
-     *
-     * @var string $colour
-     */
-    public $colour;
-
     /**
      * Construct
      *
@@ -33,49 +26,16 @@ class SolidLayer extends BaseLayer
     {
         parent::__construct($config);
 
-        if (!isset($config['colour'])) {
-            throw new PslayersException('Missing Solid Layer colour.');
-        }
-
-        $this->colour($config['colour']);
-
-        $this->canvas->newImage($config['width'], $config['height'], $config['colour']);
+        $this->canvas->newPseudoImage($config['width'], $config['height'], 'plasma:');
         $this->canvas->setImageFormat('png');
     }
-
-    /**
-     * Get and set the colour
-     *
-     * @param null|int $colour The colour
-     *
-     * @return boolean|string
-     */
-    public function colour(string $colour = null)
-    {
-        ColourValidator::isValidColour($colour);
-
-        if ($colour === null) {
-            return $this->colour;
-        }
-
-        return $this->colour = $colour;
-    }
-
-    /**
-     * Alias for colour / color
-     */
-    public function color(string $color = null)
-    {
-        return $this->colour($color);
-    }
-
 
     /**
      * Returns an representation of the layer
      *
      * @return array
      */
-    public function getLayerDetailsArray(): array
+    public function getLayerDetailsArray()
     {
         return [
             'id' => $this->id,
@@ -85,7 +45,6 @@ class SolidLayer extends BaseLayer
             'positionX' => $this->positionX(),
             'positionY' => $this->positionY(),
             'composite' => $this->composite(),
-            'colour' => $this->colour(),
         ];
     }
 }

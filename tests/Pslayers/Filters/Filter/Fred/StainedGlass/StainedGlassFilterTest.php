@@ -110,7 +110,9 @@ class StainedGlassFilterTest extends \PHPUnit_Framework_TestCase
             'ecolor' => 'black',
             'thick' => 0,
             'rseed' => rand()
-        ], $image);
+        ]);
+
+        $filter->setImage($image);
 
         $result = $filter->render();
     }
@@ -164,7 +166,9 @@ class StainedGlassFilterTest extends \PHPUnit_Framework_TestCase
             'ecolor' => 'black',
             'thick' => 0,
             'rseed' => rand()
-        ], $this->getTestImage());
+        ]);
+
+        $filter->setImage($this->getTestImage());
 
         // We're going to get rid of the command to throw the exception
         $reflection = new \ReflectionClass($filter);

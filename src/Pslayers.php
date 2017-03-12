@@ -20,9 +20,9 @@ class Pslayers
     /**
      * Imagick Instance
      *
-     * @var \Imagick $imagick
+     * @var \Imagick $masterCanvas
      */
-    private $imagick;
+    private $masterCanvas;
 
     /**
      * Hold the config option
@@ -49,7 +49,9 @@ class Pslayers
     {
         $this->config = new Config($config);
         $this->layers = new LayerCollection();
-        $this->imagick = new \Imagick();
+        $this->masterCanvas = new \Imagick();
+        $this->masterCanvas->newImage($config['width'], $config['height'], new \ImagickPixel('rgba(255, 255, 255, 0)'));
+        $this->masterCanvas->setImageFormat('png');
     }
 
     /**
@@ -70,7 +72,16 @@ class Pslayers
      */
     public function render()
     {
-        // TODO
-        return;
+        foreach ($this->layers->collection as $layer) {
+            $this->masterCanvas->compositeImage($layer->render(), $layer->composite, 0, 0);
+        }
+
+        $this->masterCanvas->writeImage('/tmp/tmp.png');
+        return $this->masterCanvas;
+    }
+
+    private function composite(\Imagick $source, \Imagick $target, $composite)
+    {
+        return $target->compositeImage($source->getImageBlob(), $composite, 0, 0);
     }
 }

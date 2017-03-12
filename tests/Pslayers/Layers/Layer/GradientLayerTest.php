@@ -13,6 +13,8 @@ class GradientLayerTest extends \PHPUnit_Framework_TestCase
             'id' => 1,
             'width' => 500,
             'height' => 500,
+            'startColour' => '#FFF',
+            'endColour' => '#000',
         ]);
 
         $this->assertInstanceOf(GradientLayer::class, $layer);
@@ -25,11 +27,13 @@ class GradientLayerTest extends \PHPUnit_Framework_TestCase
         $layer = new GradientLayer([
             'id' => 1,
             'width' => 200,
-            'height' => 2000
+            'height' => 2000,
+            'startColour' => '#000',
+            'endColour' => '#FFF'
         ]);
 
-        $this->assertEquals('', $layer->startColour());
-        $this->assertEquals('', $layer->endColour());
+        $this->assertEquals('#000', $layer->startColour());
+        $this->assertEquals('#FFF', $layer->endColour());
 
         $layer->startColour('#000');
         $layer->endColour('#FFF');
@@ -48,8 +52,8 @@ class GradientLayerTest extends \PHPUnit_Framework_TestCase
             'positionY' => 1,
             'opacity' => 1.0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'startColour' => null,
-            'endColour' => null,
+            'startColour' => '#FFF',
+            'endColour' => '#000',
         ];
 
         $layer = new GradientLayer([
@@ -59,6 +63,8 @@ class GradientLayerTest extends \PHPUnit_Framework_TestCase
             'opacity' => 1.0,
             'positionX' => 1,
             'positionY' => 1,
+            'startColour' => '#FFF',
+            'endColour' => '#000',
         ]);
 
         $this->assertEquals($expected, $layer->getLayerDetailsArray());
@@ -74,14 +80,16 @@ class GradientLayerTest extends \PHPUnit_Framework_TestCase
             'positionX' => 0,
             'positionY' => 0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'startColour' => null,
-            'endColour' => null,
+            'startColour' => '#FFF',
+            'endColour' => '#000',
         ]);
 
         $layer = new GradientLayer([
             'id' => 1,
             'width' => -100,
             'height' => -100,
+            'startColour' => '#FFF',
+            'endColour' => '#000',
         ]);
 
         $this->assertEquals($expected, $layer->getLayerDetailsJson());

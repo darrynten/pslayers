@@ -54,9 +54,9 @@ abstract class FredBaseFilter extends BaseFilter
      *
      * @param array $config
      */
-    public function __construct(array $config, \Imagick $image)
+    public function __construct(array $config)
     {
-        parent::__construct($config, $image);
+        parent::__construct($config);
 
         $required = $this->switchMap;
         $required['id'] = true;
@@ -108,29 +108,37 @@ abstract class FredBaseFilter extends BaseFilter
 
     public function render()
     {
+        if ($this->image === null) {
+            throw new PslayersException('Render without image set.');
+        }
+
         // We can't use the same file for this
         $tempFileIn = tmpfile();
-        $tempFileOut = tmpfile();
 
         // Write the existing image to the temp file
         fwrite($tempFileIn, $this->image->getImageBlob());
 
         $tempPathIn = stream_get_meta_data($tempFileIn)['uri'];
-        $tempPathOut = stream_get_meta_data($tempFileOut)['uri'];
 
         // Build the command - first is the command name
         $execute = sprintf('%s ', self::BIN_FOLDER . '/' . $this->command);
-
         // Then each switch
         foreach ($this->switchMap as $key => $value) {
-            $exectute .= sprintf('-%s %s ', $value, $this->{$key});
+            $string = sprintf('-%s %s ', $value, $this->{$key});
+            $execute .= $string;
         }
 
         // Then the in file
-        $execute .= sprintf('%s ', $tempPathIn);
+        $inPath = sprintf('%s ', $tempPathIn);
+        $execute .= $inPath;
+
+        $tempFileOut = tmpfile();
+        // There is a weird bug where the temp file vanishes too soon
+        $tempPathOut = stream_get_meta_data($tempFileOut)['uri'] . '.png';
 
         // And the out file
-        $execute .= sprintf('%s ', $tempPathOut);
+        $outPath = sprintf('%s ', $tempPathOut);
+        $execute .= $outPath;
 
         // Run
         $process = new Process($execute);
@@ -140,8 +148,8 @@ abstract class FredBaseFilter extends BaseFilter
             throw new ProcessFailedException($process);
         }
 
-        // Load the new image back
         $this->image->readImage($tempPathOut);
+        unlink($tempPathOut);
 
         return $process->getOutput();
     }
