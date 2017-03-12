@@ -15,6 +15,7 @@ use DarrynTen\Pslayers\Layers\Layer\RadialGradientLayer;
 use DarrynTen\Pslayers\Layers\Layer\TextLayer;
 use DarrynTen\Pslayers\Layers\LayerCollection;
 use DarrynTen\Pslayers\Filters\Filter\Fred\StainedGlass\StainedGlassFilter;
+use DarrynTen\Pslayers\Filters\Filter\Fred\Dice\DiceFilter;
 
 class PslayersTest extends \PHPUnit_Framework_TestCase
 {
@@ -145,7 +146,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         // plasma layer
         $filter = new StainedGlassFilter([
-            'id' => 1,
+            'id' => 'master-layer-stained-glass-filter',
             'kind' => 'random',
             'size' => 50,
             'offset' => 0,
@@ -154,6 +155,16 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'ecolor' => 'black',
             'thick' => 0,
             'rseed' => rand(),
+        ]);
+
+        // plasma layer
+        $filter = new DiceFilter([
+            'id' => 'master-layer-dice-filter',
+            'size' => 100,
+            'percent' => 100,
+            'center' => '0,0',
+            'radii' => '0,0',
+            'rounding' => '0,0',
         ]);
 
         $plasmaLayer = new PlasmaLayer([

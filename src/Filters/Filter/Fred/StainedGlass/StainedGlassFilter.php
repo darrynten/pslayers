@@ -130,9 +130,9 @@ class StainedGlassFilter extends FredBaseFilter
      * @param array $config
      * @param \Imagick $image
      */
-    public function __construct(array $config, \Imagick $image = null)
+    public function __construct(array $config)
     {
-        parent::__construct($config, $image);
+        parent::__construct($config);
 
         // Perform any custom validation
         if (isset($config['kind'])) {
