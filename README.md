@@ -18,14 +18,13 @@ to use, but to also allow for maximum flexibility.
 The core function of this package is to provide an easy way to layer
 images and then composite them together.
 
-
 ### Basic Usage
 
 ```php
 $init = [
-  'id' => 12,
-  'width' => 100,
-  'height' => 100,
+    'id' => 12,
+    'width' => 100,
+    'height' => 100,
 ];
 
 $pslayers = new Pslayers($init);
@@ -36,9 +35,9 @@ $pslayers = new Pslayers($init);
 ```php
 // Bare minimum for a blank layer
 $layerConfig = [
-  'id' => 14,
-  'width' => 100,
-  'height' => 100,
+    'id' => 14,
+    'width' => 100,
+    'height' => 100,
 ];
 
 $layer = new BlankLayer($layerConfig);
@@ -174,9 +173,6 @@ $layer->strokeOpacity(1.0);
 Currently only a start-to-finish top-to-bottom solid-to-solid gradient
 layer. This will be expanded upon.
 
-Like its cousin it's also not 100% implemented, but it provides the most
-basic of radial gradient that Imagick has to offer.
-
 ```php
 $layer = new GradientLayer($config);
 
@@ -194,6 +190,9 @@ $layer = new RadialGradientLayer($config);
 $layer->startColour('#FFFFFF');
 $layer->endColour('#000000');
 ```
+
+Like its cousin it's also not 100% implemented, but it provides the most
+basic of radial gradient that Imagick has to offer.
 
 ##### Solid Layer
 
@@ -313,12 +312,13 @@ Supported composite modes
 * Threshold - The source is composited on the target as defined by source threshold
 * XOR - The part of the source that lies outside of the destination is combined with the part of the destination that lies outside of the source
 
-## TODO
+## TODO before v1 release
 
 * refactor out var/get/set all using same name
 * z-index management
-* paramaters below
-* blend/mix modes below
+* all paramaters below
+* all blend/mix modes below
+* all documentation below
 
 ### Exaxt PS Layer Blend Modes for Reference
 
@@ -403,7 +403,7 @@ $blurFilter = new BlurFilter([
     'id' => 'blur',
     'radius' => 5,                      // required
     'sigma' => 2,                       // required
-    'channel' => \Imagic::CHANNEL_ALL,  // optional
+    'channel' => \Imagik::CHANNEL_ALL,  // optional
 ]);
 
 $blankLayer = new BlankLayer([
@@ -605,7 +605,7 @@ Then you make a constructor
 ```
 
 And then you're done. That's the entirety of creating a mapping to one of
-the filters.
+the filters. All the magic happens in the base fred filter :)
 
 Remember though, we have not included any validation or doc blocks in the
 above example, which *must* be included for a new filter to be accepted
