@@ -1,5 +1,11 @@
 # pslayers
 
+![Travis Build Status](https://travis-ci.org/darrynten/pslayers.svg?branch=master)
+![StyleCI Status](https://styleci.io/repos/81687310/shield?branch=master)
+[![codecov](https://codecov.io/gh/darrynten/pslayers/branch/master/graph/badge.svg)](https://codecov.io/gh/darrynten/pslayers)
+![Packagist Version](https://img.shields.io/packagist/v/darrynten/pslayers.svg)
+![MIT License](https://img.shields.io/github/license/darrynten/pslayers.svg)
+
 Powerful and fully featured PHP library that features photoshop-style
 image layering, compositing, filtering, blending and masking.
 
@@ -17,6 +23,10 @@ to use, but to also allow for maximum flexibility.
 
 The core function of this package is to provide an easy way to layer
 images and then composite them together.
+
+We're pre-releasing this as it does everything we need it to, but we're
+busy with other stuff, and as you know incomplete and released is better
+(and quicker) than complete and released. And we need it on packagist :)
 
 ### Basic Usage
 
