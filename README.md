@@ -608,9 +608,9 @@ Then you make a constructor
 ```php
     public function __construct(array $config)
     {
-        parent::__construct($config);
+        // Do your validation here, before you construct the parent
 
-        // Do your validation here
+        parent::__construct($config);
     }
 ```
 
