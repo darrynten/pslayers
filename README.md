@@ -152,7 +152,7 @@ Adds some additional text-specific properties
 $layer = new TextLayer($config);
 
 $layer->text('text');
-$layer->font('Ubuntu');
+$layer->font('/path/to/font');
 $layer->fontFamily('Times');
 $layer->fontSize(16);
 $layer->fontWeight(400);
@@ -206,6 +206,9 @@ $layer->colour('#FFFFFF');
 
 A layer that tiles a standard Imagick pattern. You can add optional
 scaling and scale filtering values.
+
+This is *not* a tiling layer, this uses standard, low res, built in
+patterns that come with Imagick.
 
 ```php
 $layer = new PatternLayer($config);
@@ -366,12 +369,18 @@ Supported composite modes
 
 ## Mask
 
+# NOT IMPLEMENTED
+
 * Gradiant Mask
 * Transparency Mask
 
 ## Filters
 
 There is support for filters
+
+You can combine filters on a layer in a similar way to how you combine
+layers together in a collection - the z-index is the array index, and the
+render is run up the index.
 
 ### Standard Filters
 
@@ -380,6 +389,27 @@ These are the base filters included with pslayers.
 We have designed them to be easily extensible and creatable, and will
 happily accept new filters into the core library should they be up to
 scratch. Contributions are welcome.
+
+##### Blur
+
+Basic blur filter
+
+```php
+$blurFilter = new BlurFilter([
+    'id' => 'blur',
+    'radius' => 5,                      // required
+    'sigma' => 2,                       // required
+    'channel' => \Imagic::CHANNEL_ALL,  // optional
+]);
+
+$blankLayer = new BlankLayer([
+    'id' => 'blank',
+    'filters' => [
+        $blurFilter,
+        // You can combine filters
+    ]
+])
+```
 
 ### Fred's Filters Filter Pack
 
@@ -404,6 +434,35 @@ after careful vetting.
 #### Stained Glass
 
 Gives a stained glass effect
+
+```php
+$filter = new StainedGlassFilter([
+    'id' => 1,
+    'kind' => 'random',
+    'size' => 50,
+    'offset' => 0,
+    'ncolors' => 8,
+    'bright' => 100,
+    'ecolor' => 'black',
+    'thick' => 0,
+    'rseed' => rand(),
+]);
+
+// And then add to a layer
+
+$plasmaLayer = new PlasmaLayer([
+    'id' => 'master-layer-plasma-layer',
+    'width' => $width,
+    'height' => $height,
+    'opacity' => 0.8,
+    'positionX' => 0,
+    'positionY' => 0,
+    'composite' => Imagick::COMPOSITE_DARKEN,
+    'filters' => [
+        $stainedGlassFilter,
+    ],
+]);
+```
 
 #### Dice
 
