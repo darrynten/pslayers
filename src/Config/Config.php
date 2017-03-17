@@ -55,5 +55,10 @@ class Config
         } else {
             $this->id = uniqid('pslayers', true);
         }
+
+        // optionals
+        if (!empty($config['outputPath'])) {
+            $this->outputPath = $config['outputPath'];
+        }
     }
 }

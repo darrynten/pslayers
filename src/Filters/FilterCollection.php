@@ -8,8 +8,8 @@ namespace DarrynTen\Pslayers\Filters;
  * @category Collection
  * @package  Pslayers
  * @author   Darryn Ten <darrynten@github.com>
- * @license  MIT <https://github.com/darrynten/psfilters/LICENSE>
- * @link     https://github.com/darrynten/psfilters
+ * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
+ * @link     https://github.com/darrynten/pslayers
  */
 class FilterCollection
 {
@@ -27,9 +27,9 @@ class FilterCollection
      *
      * @return object
      */
-    public function __construct()
+    public function __construct($filters = null)
     {
-        $this->collection = [];
+        $this->collection = $filters ? $filters : [];
     }
 
     /**

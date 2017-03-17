@@ -39,6 +39,15 @@ class Pslayers
     public $layers;
 
     /**
+     * Write path
+     *
+     * Where to output the file (if you want to output it)
+     *
+     * @var string|null $outputPath
+     */
+    public $outputPath;
+
+    /**
      * Construct
      *
      * Bootstraps the config and the cache, then loads the request handler
@@ -76,12 +85,10 @@ class Pslayers
             $this->masterCanvas->compositeImage($layer->render(), $layer->composite, 0, 0);
         }
 
-        $this->masterCanvas->writeImage('/tmp/tmp.png');
-        return $this->masterCanvas;
-    }
+        if ($this->config->outputPath !== null) {
+            $this->masterCanvas->writeImage($this->config->outputPath);
+        }
 
-    private function composite(\Imagick $source, \Imagick $target, $composite)
-    {
-        return $target->compositeImage($source->getImageBlob(), $composite, 0, 0);
+        return $this->masterCanvas;
     }
 }

@@ -4,6 +4,7 @@ namespace DarrynTen\Pslayers\Tests;
 
 use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 use DarrynTen\Pslayers\Layers\LayerCollection;
+use DarrynTen\Pslayers\Filters\Filter\BlankFilter;
 
 class LayerCollectionTest extends \PHPUnit_Framework_TestCase
 {
@@ -47,7 +48,7 @@ class LayerCollectionTest extends \PHPUnit_Framework_TestCase
                     'positionY' => 0,
                     'opacity' => 0.4,
                     'composite' => \Imagick::COMPOSITE_DEFAULT,
-                    'filters' => [],
+                    'filters' => [ 'collection' => [] ],
                     'canvas' => new \stdClass,
                 ]
             ]

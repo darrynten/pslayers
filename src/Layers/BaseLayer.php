@@ -5,6 +5,7 @@ namespace DarrynTen\Pslayers\Layers;
 use Imagick;
 use ImagickPixel;
 use DarrynTen\Pslayers\Exceptions\PslayersException;
+use DarrynTen\Pslayers\Filters\FilterCollection;
 use DarrynTen\Pslayers\Validators\ColourValidator;
 
 /**
@@ -123,9 +124,7 @@ abstract class BaseLayer implements LayerInterface
             !empty($config['composite']) ? $config['composite'] : Imagick::COMPOSITE_DEFAULT
         );
 
-        $this->filters(
-            !empty($config['filters']) ? $config['filters'] : []
-        );
+        $this->filters = new FilterCollection($config['filters']);
 
         $this->canvas = new Imagick();
         $this->canvas->newImage($this->width, $this->height, new ImagickPixel());
@@ -222,23 +221,6 @@ abstract class BaseLayer implements LayerInterface
     }
 
     /**
-     * Sets and gets the layer filter
-     *
-     * @param null|BaseFilter $filter
-     *
-     * @return boolean|BaseFilter
-     */
-    public function filters($filters = null)
-    {
-        if ($filters === null) {
-            return $this->filters;
-        }
-
-        return $this->filters = $filters;
-    }
-
-
-    /**
      * Sets and gets the opacity of the layer
      *
      * @param null|float $opacity Float value between 0 and 1
@@ -269,13 +251,13 @@ abstract class BaseLayer implements LayerInterface
 
     public function render()
     {
-        if (isset($this->filters[0])) {
-            foreach ($this->filters as $filter) {
-                $filter->setImage($this->canvas);
-                $filter->render();
-                $this->canvas = $filter->getImage();
-            }
+        // if (isset($this->filters[0])) {
+        foreach ($this->filters->collection as $filter) {
+            $filter->setImage($this->canvas);
+            $filter->render();
+            $this->canvas = $filter->getImage();
         }
+        // }
 
         $this->canvas->setImageAlpha($this->opacity());
         return $this->canvas;

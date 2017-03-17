@@ -10,8 +10,8 @@ use DarrynTen\Pslayers\Exceptions\PslayersException;
  * @category Filter
  * @package  Pslayers
  * @author   Darryn Ten <darrynten@github.com>
- * @license  MIT <https://github.com/darrynten/psfilters/LICENSE>
- * @link     https://github.com/darrynten/psfilters
+ * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
+ * @link     https://github.com/darrynten/pslayers
  */
 abstract class BaseFilter implements FilterInterface
 {

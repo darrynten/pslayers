@@ -8,8 +8,8 @@ namespace DarrynTen\Pslayers\Filters;
  * @category Filter
  * @package  Pslayers
  * @author   Darryn Ten <darrynten@github.com>
- * @license  MIT <https://github.com/darrynten/psfilters/LICENSE>
- * @link     https://github.com/darrynten/psfilters
+ * @license  MIT <https://github.com/darrynten/pslayers/LICENSE>
+ * @link     https://github.com/darrynten/pslayers
  */
 interface FilterInterface
 {

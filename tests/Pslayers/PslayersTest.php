@@ -17,6 +17,7 @@ use DarrynTen\Pslayers\Layers\LayerCollection;
 use DarrynTen\Pslayers\Filters\FilterCollection;
 use DarrynTen\Pslayers\Filters\Filter\Fred\StainedGlass\StainedGlassFilter;
 use DarrynTen\Pslayers\Filters\Filter\Fred\Dice\DiceFilter;
+use DarrynTen\Pslayers\Filters\Filter\Standard\Blur\BlurFilter;
 
 class PslayersTest extends \PHPUnit_Framework_TestCase
 {
@@ -66,21 +67,21 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
     public function testMasterRender()
     {
-        $output = '/tmp/out.png';
+        $output = '/tmp/tmp.png';
 
         $width = 800;
-        $height = 380;
+        $height = 300;
 
         $config = [
             'id' => 11,
             'width' => $width,
             'height' => $height,
+            'outputPath' => $output,
         ];
 
         $instance = new Pslayers($config);
 
         // background layer
-
         $backgroundLayer = new SolidLayer([
             'id' => 'master-layer-solid-base',
             'width' => $width,
@@ -95,7 +96,6 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         $instance->addLayer($backgroundLayer, 0);
 
         // gradient layer
-
         $gradientLayer = new GradientLayer([
             'id' => 'master-layer-gradient',
             'width' => $width,
@@ -111,7 +111,6 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         $instance->addLayer($gradientLayer, 1);
 
         // radial gradient layer
-
         $radialGradientLayer = new RadialGradientLayer([
             'id' => 'master-layer-radial-gradient',
             'width' => $width,
@@ -127,7 +126,6 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         $instance->addLayer($radialGradientLayer, 2);
 
         // pattern layer
-
         $patternLayer = new PatternLayer([
             'id' => 'master-layer-pattern-layer',
             'width' => $width,
@@ -165,10 +163,11 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'rounding' => '0,0',
         ]);
 
-        // TODO
-        $filterCollection = new FilterCollection();
-        $filterCollection->addFilterToCollection($stainedGlassFilter, 0);
-        $filterCollection->addFilterToCollection($diceFilter, 0);
+        $blurFilter = new BlurFilter([
+            'id' => 'master-layer-blur-filter',
+            'radius' => 5,
+            'sigma' => 3,
+        ]);
 
         $plasmaLayer = new PlasmaLayer([
             'id' => 'master-layer-plasma-layer',
@@ -179,7 +178,9 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'positionY' => 0,
             'composite' => Imagick::COMPOSITE_DARKEN,
             'filters' => [
-                $diceFilter
+                $blurFilter,
+                $stainedGlassFilter,
+                $diceFilter,
             ],
         ]);
 
