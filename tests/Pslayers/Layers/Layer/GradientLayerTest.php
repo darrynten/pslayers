@@ -75,8 +75,8 @@ class GradientLayerTest extends \PHPUnit_Framework_TestCase
         $expected = json_encode([
             'id' => 1,
             'opacity' => 1,
-            'width' => 0,
-            'height' => 0,
+            'width' => 100,
+            'height' => 100,
             'positionX' => 0,
             'positionY' => 0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
@@ -86,8 +86,8 @@ class GradientLayerTest extends \PHPUnit_Framework_TestCase
 
         $layer = new GradientLayer([
             'id' => 1,
-            'width' => -100,
-            'height' => -100,
+            'width' => 100,
+            'height' => 100,
             'startColour' => '#FFF',
             'endColour' => '#000',
         ]);
