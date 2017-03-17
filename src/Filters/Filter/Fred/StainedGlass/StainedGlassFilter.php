@@ -2,9 +2,6 @@
 
 namespace DarrynTen\Pslayers\Filters\Filter\Fred\StainedGlass;
 
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-
 use DarrynTen\Pslayers\Filters\Filter\Fred\FredBaseFilter;
 use DarrynTen\Pslayers\Exceptions\PslayersException;
 

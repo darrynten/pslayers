@@ -52,6 +52,9 @@ $layer->width(200); // $width = 200
 
 ##### Standard base getters and setters
 
+It was very silly to do var/get/set all with the same name. This is on the
+todo list to refactor out.
+
 ```
 $layer->width();
 $layer->height();
@@ -312,6 +315,7 @@ Supported composite modes
 
 ## TODO
 
+* refactor out var/get/set all using same name
 * z-index management
 * paramaters below
 * blend/mix modes below
@@ -433,7 +437,9 @@ after careful vetting.
 
 #### Stained Glass
 
-Gives a stained glass effect
+Gives a stained glass effect.
+
+[Docs](http://www.fmwconcepts.com/imagemagick/stainedglass/index.php)
 
 ```php
 $filter = new StainedGlassFilter([
@@ -467,3 +473,143 @@ $plasmaLayer = new PlasmaLayer([
 #### Dice
 
 Dices up the images
+
+[Docs](http://www.fmwconcepts.com/imagemagick/dice/index.php)
+
+```php
+$diceFilter = new DiceFilter([
+    'id' => 'master-layer-dice-filter',
+    'size' => 100,
+    'percent' => 100,
+    'center' => '10,10',
+    'radii' => '0,0',
+    'rounding' => '0,0',
+]);
+```
+
+#### Other Freds Filters
+
+Not all filters have been added. If you add a filter please do contribute
+it back to this project via a PR.
+
+You can extend `FredBaseFilter` and follow the style within one of the
+other templates.
+
+As an example we will run through the creation of the
+[stained glass filter](http://www.fmwconcepts.com/imagemagick/stainedglass/index.php) - you can follow along in the source for this
+filter.
+
+The usage instructions show the switches
+
+```
+USAGE: stainedglass [-k kind] [-s size] [-o offset] [-n ncolors] [-b bright] [-e ecolor] [-t thick] [-r rseed] [-a] infile outfile
+USAGE: stainedglass [-h or -help]
+
+-k .... kind ....... kind of stainedglass cell shape; choices are: square 
+.................... (or s), hexagon (or h), random (or r); default=random
+-s .... size ....... size of cell; integer>0; default=16 
+-o .... offset ..... random offset amount; integer>=0; default=6; 
+.................... only applies to kind=random
+-n .... ncolors .... number of desired reduced colors for the output; 
+.................... integer>0; default is no color reduction
+-b .... bright ..... brightness value in percent for output image; 
+.................... integer>=0; default=100
+-e .... ecolor ..... color for edge or border around each cell; any valid 
+.................... IM color; default=black
+-t .... thick ...... thickness for edge or border around each cell; 
+.................... integer>=0; default=1; zero means no edge or border
+-r .... rseed ...... random number seed value; integer>=0; if seed provided, 
+.................... then image will reproduce; default is no seed, so that 
+.................... each image will be randomly different; only applies 
+.................... to kind=random
+-a ................. use average color of cell rather than color at center 
+.................... of cell; default is center color
+```
+
+You will use those in the creation of the class.
+
+At the very least you need the following
+
+```php
+namespace DarrynTen\Pslayers\Filters\Filter\Fred\StainedGlass;
+
+use DarrynTen\Pslayers\Filters\Filter\Fred\FredBaseFilter;
+```
+
+although you will see in the file that there is very strict validation
+happening in all of these classes, but we will not be worrying about that
+right now for the sake of this tutorial.
+
+Next we set the extend the included base filter and set the command.
+
+This is the command that one would run if using these filters in the
+command line.
+
+```php
+class StainedGlassFilter extends FredBaseFilter
+{
+    protected $command = 'stainedglass';
+```
+
+We then make a mapping of all the switches
+
+```php
+    protected $switchMap = [
+        'kind' => 'k',
+        'size' => 's',
+        'offset' => 'o',
+        'ncolors' => 'n',
+        'bright' => 'b',
+        'ecolor' => 'e',
+        'thick' => 't',
+        'rseed' => 'r',
+    ];
+```
+
+These will get mapped out to the command when the `render()` method that
+is inside the base class is called.
+
+You will notice that there is no support for the `-a` switch, as it
+operates sort-of like a boolean, but we have not added this type of
+"anonymous" switch (a switch that does not provide a value).
+
+Please feel free to update the base filter to support this.
+
+We then make `protected` variables for each entry in the switch map that
+will be used by the base class when constructing.
+
+```php
+    protected $kind;
+    protected $size;
+    protected $offset;
+    protected $ncolors;
+    protected $bright;
+    protected $ecolor;
+    protected $thick;
+    protected $rseed;
+```
+
+Every single one of these must be the exact name as per the switch map
+you defined above. This is very important. It is also important that you
+map to the short version of the switch.
+
+Then you make a constructor
+
+```php
+    public function __construct(array $config)
+    {
+        parent::__construct($config);
+
+        // Do your validation here
+    }
+```
+
+And then you're done. That's the entirety of creating a mapping to one of
+the filters.
+
+Remember though, we have not included any validation or doc blocks in the
+above example, which *must* be included for a new filter to be accepted
+into the project. It is also important to throw exceptions for any
+validation errors (don't return `false`, you must `throw`).
+
+
