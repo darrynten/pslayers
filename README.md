@@ -622,4 +622,6 @@ above example, which *must* be included for a new filter to be accepted
 into the project. It is also important to throw exceptions for any
 validation errors (don't return `false`, you must `throw`).
 
+## Acknowledgements
 
+* [Dmitry Semenov](https://github.com/mxnr), as always.
