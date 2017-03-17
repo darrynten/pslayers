@@ -265,11 +265,9 @@ abstract class BaseLayer implements LayerInterface
          *
          * This check should ensure some compatibility
          */
-        if (method_exists($this->canvas, 'setImageAlpha')) {
-            $this->canvas->setImageAlpha($this->opacity());
-        } else {
+        method_exists($this->canvas, 'setImageAlpha') ?
+            $this->canvas->setImageAlpha($this->opacity()) :
             $this->canvas->setImageOpacity($this->opacity());
-        }
 
         return $this->canvas;
     }
