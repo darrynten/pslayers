@@ -5,6 +5,8 @@ php:
   - 7.1
 
 before_script:
+  - travis_retry composer self-update --preview
+  - travis_retry composer install --prefer-dist --no-interaction
   - sudo add-apt-repository -y ppa:moti-p/cc
   - sudo apt-get update
   - sudo apt-get -y --reinstall install imagemagick
