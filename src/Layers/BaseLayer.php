@@ -260,7 +260,17 @@ abstract class BaseLayer implements LayerInterface
             $this->canvas = $filter->getImage();
         }
 
-        $this->canvas->setImageAlpha($this->opacity());
+        /**
+         * ImageMagick 7 has setImageAlpha, prior has setImageOpacity
+         *
+         * This check should ensure some compatibility
+         */
+        if (method_exists($this->canvas, 'setImageAlpha')) {
+            $this->canvas->setImageAlpha($this->opacity());
+        } else {
+            $this->canvas->setImageOpacity($this->opacity());
+        }
+
         return $this->canvas;
     }
 }
