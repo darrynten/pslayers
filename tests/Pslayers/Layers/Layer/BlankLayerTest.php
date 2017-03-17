@@ -5,7 +5,7 @@ namespace DarrynTen\Pslayers\Tests;
 use Imagick;
 use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 
-class BlankLayersTest extends \PHPUnit_Framework_TestCase
+class BlankLayerTest extends \PHPUnit_Framework_TestCase
 {
     public function testNewBlankLayer()
     {
