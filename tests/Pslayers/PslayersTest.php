@@ -26,7 +26,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         $config = [
             'id' => 11,
             'width' => 800,
-            'height' => 300,
+            'height' => 380,
         ];
 
         $instance = new Pslayers($config);
@@ -34,7 +34,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         $config = [
             'width' => 800,
-            'height' => 300,
+            'height' => 380,
         ];
 
         $instance = new Pslayers($config);
@@ -70,7 +70,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         $output = '/tmp/tmp.png';
 
         $width = 800;
-        $height = 300;
+        $height = 380;
 
         $config = [
             'id' => 11,
@@ -158,7 +158,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'id' => 'master-layer-dice-filter',
             'size' => 100,
             'percent' => 100,
-            'center' => '0,0',
+            'center' => '10,10',
             'radii' => '0,0',
             'rounding' => '0,0',
         ]);
@@ -179,12 +179,50 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'composite' => Imagick::COMPOSITE_DARKEN,
             'filters' => [
                 $blurFilter,
+                // $diceFilter,
                 $stainedGlassFilter,
-                $diceFilter,
             ],
         ]);
 
         $instance->addLayer($plasmaLayer, 4);
+
+        $textLayerConfig = [
+            'id' => 'master-text-layer-1',
+            'width' => $width,
+            'height' => $height,
+            'positionX' => 16,
+            'positionY' => 205,
+            'text' => 'The Title',
+            'composite' => Imagick::COMPOSITE_DEFAULT,
+            'fontColour' => '#FFF',
+            'strokeColour' => 'none',
+            'strokeOpacity' => 0.0,
+            'fontSize' => 56,
+        ];
+
+        $textLayer = new TextLayer($textLayerConfig);
+
+        $instance->addLayer($textLayer, 5);
+
+        $textLayer2Config = [
+            'id' => 'master-text-layer-2',
+            'width' => $width,
+            'height' => $height,
+            'positionX' => 16,
+            'positionY' => 265,
+            'text' => 'The Description',
+            'composite' => Imagick::COMPOSITE_DEFAULT,
+            'fontColour' => '#FFF',
+            'font' => __DIR__ . '/fonts/Passion_One/PassionOne-Regular.ttf',
+            'strokeColour' => '#FFF',
+            'strokeOpacity' => 0.0,
+            'fontSize' => 26,
+        ];
+
+        $textLayer2 = new TextLayer($textLayer2Config);
+
+        $instance->addLayer($textLayer2, 6);
+
 
         $instance->render();
     }

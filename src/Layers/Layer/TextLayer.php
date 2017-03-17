@@ -147,11 +147,11 @@ class TextLayer extends BaseLayer
         );
 
         $this->font(
-            !empty($config['font']) ? $config['font'] : 'serif'
+            !empty($config['font']) ? $config['font'] : 'Times'
         );
 
         $this->fontFamily(
-            !empty($config['fontFamily']) ? $config['fontFamily'] : 'Times'
+            !empty($config['fontFamily']) ? $config['fontFamily'] : null
         );
 
         $this->fontSize(
@@ -171,11 +171,11 @@ class TextLayer extends BaseLayer
         );
 
         $this->underColour(
-            !empty($config['underColour']) ? $config['underColour'] : null
+            !empty($config['underColour']) ? $config['underColour'] : 'none'
         );
 
         $this->fillColour(
-            !empty($config['fillColour']) ? $config['fillColour'] : null
+            !empty($config['fillColour']) ? $config['fillColour'] : '#FFF'
         );
 
         $this->fillOpacity(
@@ -183,7 +183,7 @@ class TextLayer extends BaseLayer
         );
 
         $this->strokeColour(
-            !empty($config['strokeColour']) ? $config['strokeColour'] : null
+            !empty($config['strokeColour']) ? $config['strokeColour'] : 'none'
         );
 
         $this->strokeWidth(
@@ -191,7 +191,7 @@ class TextLayer extends BaseLayer
         );
 
         $this->strokeOpacity(
-            !empty($config['strokeOpacity']) ? $config['strokeOpacity'] : 1
+            !empty($config['strokeOpacity']) ? $config['strokeOpacity'] : 0.0
         );
 
         parent::__construct($config);
@@ -451,6 +451,43 @@ class TextLayer extends BaseLayer
         }
 
         return $this->text = $text;
+    }
+
+    public function render()
+    {
+        $draw = new \ImagickDraw();
+
+        $draw->setStrokeAntialias(true);
+        $draw->setTextAntialias(true);
+
+        $draw->setFont($this->font);
+        $draw->setFontSize($this->fontSize);
+        $draw->setFontStretch($this->fontStretch);
+        $draw->setFontStyle($this->fontStyle);
+        $draw->setFontWeight($this->fontWeight);
+
+        if ($this->fontFamily !== null) {
+            $draw->setFontFamily($this->fontFamily);
+        }
+
+        $draw->setFillColor(new \ImagickPixel($this->fillColour()));
+        $draw->setFillOpacity($this->fillOpacity);
+
+        $draw->setStrokeColor(new \ImagickPixel($this->strokeColour()));
+        $draw->setStrokeOpacity($this->strokeOpacity);
+
+        $draw->setTextUnderColor(new \ImagickPixel($this->underColour()));
+
+        $draw->setTextDecoration($this->textDecoration);
+        $draw->setTextAlignment($this->textAlignment);
+
+        // Correct the position on the Y axis
+        $dimensions = $this->canvas->queryFontMetrics($draw, $this->text);
+        $this->positionY = $this->positionY + $dimensions['textHeight'] * 0.66;
+
+        $this->canvas->annotateImage($draw, $this->positionX, $this->positionY, 0, $this->text);
+
+        return $this->canvas;
     }
 
     /**

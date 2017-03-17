@@ -127,7 +127,7 @@ abstract class BaseLayer implements LayerInterface
         $this->filters = new FilterCollection($config['filters']);
 
         $this->canvas = new Imagick();
-        $this->canvas->newImage($this->width, $this->height, new ImagickPixel());
+        $this->canvas->newImage($this->width, $this->height, new ImagickPixel('none'));
         $this->canvas->setImageFormat('png');
     }
 
@@ -251,13 +251,11 @@ abstract class BaseLayer implements LayerInterface
 
     public function render()
     {
-        // if (isset($this->filters[0])) {
         foreach ($this->filters->collection as $filter) {
             $filter->setImage($this->canvas);
             $filter->render();
             $this->canvas = $filter->getImage();
         }
-        // }
 
         $this->canvas->setImageAlpha($this->opacity());
         return $this->canvas;

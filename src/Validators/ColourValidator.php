@@ -30,6 +30,13 @@ class ColourValidator
     private static $validLongHex = '/^\#[0-9A-Fa-f]{6}$/';
 
     /**
+     * Valid word
+     *
+     * @var array $validLongHex
+     */
+    private static $validWord = '/^none$/';
+
+    /**
      * Check if valid colour
      *
      * @return boolean
@@ -46,6 +53,10 @@ class ColourValidator
         }
 
         if (preg_match(self::$validLongHex, $colour)) {
+            return true;
+        }
+
+        if (preg_match(self::$validWord, $colour)) {
             return true;
         }
 
