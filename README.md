@@ -1,7 +1,7 @@
 # pslayers
 
 ![Travis Build Status](https://travis-ci.org/darrynten/pslayers.svg?branch=master)
-![StyleCI Status](https://styleci.io/repos/81687310/shield?branch=master)
+![StyleCI Status](https://styleci.io/repos/82737297/shield?branch=master)
 [![codecov](https://codecov.io/gh/darrynten/pslayers/branch/master/graph/badge.svg)](https://codecov.io/gh/darrynten/pslayers)
 ![Packagist Version](https://img.shields.io/packagist/v/darrynten/pslayers.svg)
 ![MIT License](https://img.shields.io/github/license/darrynten/pslayers.svg)
