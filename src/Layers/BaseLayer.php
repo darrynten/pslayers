@@ -124,6 +124,9 @@ abstract class BaseLayer implements LayerInterface
             !empty($config['composite']) ? $config['composite'] : Imagick::COMPOSITE_DEFAULT
         );
 
+        if (!isset($config['filters'])) {
+            $config['filters'] = [];
+        }
         $this->filters = new FilterCollection($config['filters']);
 
         $this->canvas = new Imagick();
