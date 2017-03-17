@@ -6,7 +6,7 @@ use Imagick;
 use DarrynTen\Pslayers\Filters\Filter\BlankFilter;
 use DarrynTen\Pslayers\Exceptions\PslayersException;
 
-class BlankFiltersTest extends \PHPUnit_Framework_TestCase
+class BlankFilterTest extends \PHPUnit_Framework_TestCase
 {
     public function getTestImage()
     {
