@@ -133,8 +133,8 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'width' => $width,
             'height' => $height,
             'opacity' => 0.1,
-            'positionX' => 0,
-            'positionY' => 0,
+            'positionX' => 100,
+            'positionY' => 200,
             'composite' => Imagick::COMPOSITE_MULTIPLY,
             'pattern' => 'horizontal',
             'scale' => '1',
@@ -176,8 +176,8 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'width' => $width,
             'height' => $height,
             'opacity' => 0.8,
-            'positionX' => 0,
-            'positionY' => 0,
+            'positionX' => 100,
+            'positionY' => 100,
             'composite' => Imagick::COMPOSITE_DARKEN,
             'filters' => [
                 $blurFilter,
@@ -193,8 +193,8 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'width' => $width,
             'height' => $height,
             'positionX' => 16,
-            'positionY' => 205,
-            'text' => 'The Title',
+            'positionY' => 0,
+            'text' => 'Some Text',
             'composite' => Imagick::COMPOSITE_DEFAULT,
             'fontColour' => '#FFF',
             'strokeColour' => 'none',
@@ -209,8 +209,8 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'width' => $width,
             'height' => $height,
             'positionX' => 16,
-            'positionY' => 265,
-            'text' => 'The Description',
+            'positionY' => 65,
+            'text' => 'More Text',
             'composite' => Imagick::COMPOSITE_DEFAULT,
             'fontColour' => '#FFF',
             'font' => __DIR__ . '/fonts/Passion_One/PassionOne-Regular.ttf',
@@ -225,7 +225,8 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'id' => 'master-group-text-layer',
             'width' => $width,
             'height' => $height,
-            'positionX' => 50,
+            'positionX' => 150,
+            'positionY' => 100
         ];
 
         $groupLayer = new GroupLayer($groupLayerConfig);

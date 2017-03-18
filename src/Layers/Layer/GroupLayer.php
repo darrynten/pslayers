@@ -73,7 +73,7 @@ class GroupLayer extends BaseLayer
     public function render()
     {
         foreach ($this->group->collection as $layer) {
-            $this->canvas->compositeImage($layer->render(), $layer->composite, 0, 0);
+            $this->canvas->compositeImage($layer->render(), $layer->composite, $layer->positionX, $layer->positionY);
         }
 
         return $this->canvas;

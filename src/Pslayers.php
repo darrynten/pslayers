@@ -82,7 +82,7 @@ class Pslayers
     public function render()
     {
         foreach ($this->layers->collection as $layer) {
-            $this->masterCanvas->compositeImage($layer->render(), $layer->composite, 0, 0);
+            $this->masterCanvas->compositeImage($layer->render(), $layer->composite, $layer->positionX, $layer->positionY);
         }
 
         if ($this->config->outputPath !== null) {
