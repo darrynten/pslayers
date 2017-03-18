@@ -30,11 +30,23 @@ class ImageLayer extends BaseLayer
      */
     public function __construct(array $config)
     {
-        $this->image(
-            !empty($config['image']) ? $config['image'] : null
-        );
-
         parent::__construct($config);
+
+        if (!empty($config['imageUrl'])) {
+            // TODO validate
+            $image = file_get_contents($config['imageUrl']);
+
+            $temp = new \Imagick;
+            $temp->setSize($config['width'], $config['height']);
+            $temp->readImageBlob($image);
+            $temp->setImageFormat('png');
+
+            $this->canvas = $temp;
+        } else {
+            $this->image(
+                !empty($config['image']) ? $config['image'] : null
+            );
+        }
     }
 
     /**
