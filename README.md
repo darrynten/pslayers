@@ -249,8 +249,6 @@ $layer = new PlasmaLayer($config);
 
 ##### Group Layer
 
-not 100% implemented
-
 This is basically a layer that contains another collection of layers
 that can each have their own compositing trees, so you can have greater
 control over your layer composition and manipulation.
@@ -258,11 +256,13 @@ control over your layer composition and manipulation.
 ```php
 $layer = new GroupLayer($config);
 
-$newTextLayer = new Text($config);
-$newGradientLayer = new Text($config);
+$newTextLayer = new TextLayer($config);
+$newGradientLayer = new GradientLayer($config);
 
 $layer->group->addLayerToCollection($newGradientLayer, 1);
 $layer->group->addLayerToCollection($newTextLayer, 2);
+
+$layer->render();
 ```
 
 This needs to get its render triggered when appropriate

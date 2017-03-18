@@ -33,11 +33,23 @@ class GroupLayer extends BaseLayer
         if (!empty($config['group']) && $config['group'] instanceof LayerCollection) {
             $this->group = $config['group'];
         } else {
-            $this->group = new LayerCollection;
+            $this->group = new LayerCollection();
         }
 
         parent::__construct($config);
     }
+
+    /**
+     * Adds a layer to the group
+     *
+     * @param BaseLayer $layer The layer to add
+     * @param int $index The z-index to assign to
+     */
+    public function addLayer(BaseLayer $layer, int $index)
+    {
+        $this->group->addLayerToCollection($layer, $index);
+    }
+
 
     /**
      * Returns an representation of the layer
@@ -56,5 +68,14 @@ class GroupLayer extends BaseLayer
             'composite' => $this->composite(),
             'group' => $this->group,
         ];
+    }
+
+    public function render()
+    {
+        foreach ($this->group->collection as $layer) {
+            $this->canvas->compositeImage($layer->render(), $layer->composite, 0, 0);
+        }
+
+        return $this->canvas;
     }
 }

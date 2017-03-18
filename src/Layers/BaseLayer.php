@@ -254,10 +254,12 @@ abstract class BaseLayer implements LayerInterface
 
     public function render()
     {
-        foreach ($this->filters->collection as $filter) {
-            $filter->setImage($this->canvas);
-            $filter->render();
-            $this->canvas = $filter->getImage();
+        if (sizeof($this->filters->collection > 0)) {
+            foreach ($this->filters->collection as $filter) {
+                $filter->setImage($this->canvas);
+                $filter->render();
+                $this->canvas = $filter->getImage();
+            }
         }
 
         /**
