@@ -10,6 +10,7 @@ use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 use DarrynTen\Pslayers\Layers\Layer\SolidLayer;
 use DarrynTen\Pslayers\Layers\Layer\PatternLayer;
 use DarrynTen\Pslayers\Layers\Layer\ImageLayer;
+use DarrynTen\Pslayers\Layers\Layer\GroupLayer;
 use DarrynTen\Pslayers\Layers\Layer\PlasmaLayer;
 use DarrynTen\Pslayers\Layers\Layer\GradientLayer;
 use DarrynTen\Pslayers\Layers\Layer\RadialGradientLayer;
@@ -203,8 +204,6 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         $textLayer = new TextLayer($textLayerConfig);
 
-        $instance->addLayer($textLayer, 5);
-
         $textLayer2Config = [
             'id' => 'master-text-layer-2',
             'width' => $width,
@@ -222,7 +221,19 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         $textLayer2 = new TextLayer($textLayer2Config);
 
-        $instance->addLayer($textLayer2, 6);
+        $groupLayerConfig = [
+            'id' => 'master-group-text-layer',
+            'width' => $width,
+            'height' => $height,
+            'positionX' => 50,
+        ];
+
+        $groupLayer = new GroupLayer($groupLayerConfig);
+
+        $groupLayer->addLayer($textLayer, 0);
+        $groupLayer->addLayer($textLayer2, 1);
+
+        $instance->addLayer($groupLayer, 6);
 
         $imageLayer = new ImageLayer([
             'id' => 'master-image-layer',
