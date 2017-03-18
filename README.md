@@ -178,6 +178,15 @@ $layer->strokeWidth(2);
 $layer->strokeOpacity(1.0);
 ```
 
+##### Image Layer
+
+This *only* works with the `imageUrl` config option at this time.
+
+You can still set the image directly or use a BlankLayer and set your
+image on that canvas.
+
+This will be fixed.
+
 ##### Gradient Layer
 
 Currently only a start-to-finish top-to-bottom solid-to-solid gradient

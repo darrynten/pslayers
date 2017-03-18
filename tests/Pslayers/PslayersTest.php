@@ -9,6 +9,7 @@ use DarrynTen\Pslayers\Validators\ImageTypeValidator;
 use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 use DarrynTen\Pslayers\Layers\Layer\SolidLayer;
 use DarrynTen\Pslayers\Layers\Layer\PatternLayer;
+use DarrynTen\Pslayers\Layers\Layer\ImageLayer;
 use DarrynTen\Pslayers\Layers\Layer\PlasmaLayer;
 use DarrynTen\Pslayers\Layers\Layer\GradientLayer;
 use DarrynTen\Pslayers\Layers\Layer\RadialGradientLayer;
@@ -69,8 +70,8 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
     {
         $output = '/tmp/tmp.png';
 
-        $width = 800;
-        $height = 380;
+        $width = 830;
+        $height = 360;
 
         $config = [
             'id' => 11,
@@ -145,7 +146,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         $stainedGlassFilter = new StainedGlassFilter([
             'id' => 'master-layer-stained-glass-filter',
             'kind' => 'random',
-            'size' => 50,
+            'size' => 75,
             'offset' => 0,
             'ncolors' => 16,
             'bright' => 100,
@@ -156,9 +157,9 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         $diceFilter = new DiceFilter([
             'id' => 'master-layer-dice-filter',
-            'size' => 100,
+            'size' => 75,
             'percent' => 100,
-            'center' => '10,10',
+            'center' => '0,0',
             'radii' => '0,0',
             'rounding' => '0,0',
         ]);
@@ -223,6 +224,18 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         $instance->addLayer($textLayer2, 6);
 
+        $imageLayer = new ImageLayer([
+            'id' => 'master-image-layer',
+            'width' => $width,
+            'height' => $height,
+            'imageUrl' => __DIR__ . '/image/test.png',
+            'composite' => Imagick::COMPOSITE_MULTIPLY,
+            'filters' => [
+                $stainedGlassFilter,
+            ],
+        ]);
+
+        $instance->addLayer($imageLayer, 4);
 
         $instance->render();
     }
