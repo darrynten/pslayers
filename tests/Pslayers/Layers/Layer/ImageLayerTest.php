@@ -14,7 +14,7 @@ class ImageLayerTest extends PHPUnit_Framework_TestCase
             'id' => 1,
             'width' => 500,
             'height' => 500,
-            'imageUrl' => 'http://lorempixel.com/500/500/',
+            'imageUrl' => __DIR__ . '/../../image/test.png',
         ]);
 
         $this->assertInstanceOf(ImageLayer::class, $layer);
@@ -27,7 +27,7 @@ class ImageLayerTest extends PHPUnit_Framework_TestCase
             'id' => 1,
             'width' => 200,
             'height' => 200,
-            'imageUrl' => 'http://lorempixel.com/200/200/',
+            'imageUrl' => __DIR__ . '/../../image/test.png',
         ]);
 
         $this->assertEquals('', $layer->image());

@@ -228,7 +228,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'id' => 'master-image-layer',
             'width' => $width,
             'height' => $height,
-            'imageUrl' => 'http://lorempixel.com/' . $width . '/' . $height . '/',
+            'imageUrl' => __DIR__ . '/image/test.png',
             'composite' => Imagick::COMPOSITE_MULTIPLY,
             'filters' => [
                 $stainedGlassFilter,
