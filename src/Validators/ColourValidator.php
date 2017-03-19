@@ -18,16 +18,36 @@ class ColourValidator
     /**
      * Valid short hex (#FFF)
      *
-     * @var array $validShortHex
+     * @var string $validShortHex
      */
     private static $validShortHex = '/^\#[0-9A-Fa-f]{3}$/';
 
     /**
      * Valid long hex (#FFFFFF)
      *
-     * @var array $validLongHex
+     * @var string $validLongHex
      */
     private static $validLongHex = '/^\#[0-9A-Fa-f]{6}$/';
+
+    /**
+     * Valid rgba
+     *
+     * rgba(1,1,1,1)
+     * rgba(0,10,0,0)
+     * rgba(0, 0 ,0, 0.0)
+     * rgba( 255,255,255,1)
+     * rgba(255, 111 ,0 , 0.5 )
+     *
+     * @var string $validRgba
+     */
+    private static $validRgba = '/^rgba\(\s?[0-2]{0,1}?[0-9]{0,2}?\s?,\s?[0-2]{0,1}?[0-9]{0,2}?\s?,\s?[0-2]{0,1}[0-9]{0,2}?\s?(,\s?[0-1]{1}\.*?[0-9]?\s?)?\)$/';
+
+    /**
+     * Valid rgb
+     *
+     * @var string $validRgb
+     */
+    private static $validRgb = '/^rgb\(\s?[0-2]{0,1}?[0-9]{0,2}?\s?,\s?[0-2]{0,1}?[0-9]{0,2}?\s?,\s?[0-2]{0,1}[0-9]{0,2}?\s?\)$/';
 
     /**
      * Valid word
@@ -53,6 +73,14 @@ class ColourValidator
         }
 
         if (preg_match(self::$validLongHex, $colour)) {
+            return true;
+        }
+
+        if (preg_match(self::$validRgb, $colour)) {
+            return true;
+        }
+
+        if (preg_match(self::$validRgba, $colour)) {
             return true;
         }
 

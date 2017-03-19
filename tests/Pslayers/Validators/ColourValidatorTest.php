@@ -12,6 +12,8 @@ class ColourValidatorTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(ColourValidator::isValidColour('#000000'));
         $this->assertTrue(ColourValidator::isValidColour('#FFF'));
         $this->assertTrue(ColourValidator::isValidColour('#b4d455'));
+        $this->assertTrue(ColourValidator::isValidColour('rgb(255,128,1)'));
+        $this->assertTrue(ColourValidator::isValidColour('rgba(255,128,0, 1)'));
         $this->assertTrue(ColourValidator::isValidColour(null));
 
         $this->assertTrue(ColourValidator::isValidOpacity(1));
