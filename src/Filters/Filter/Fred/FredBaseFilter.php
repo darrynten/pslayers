@@ -20,7 +20,7 @@ use DarrynTen\Pslayers\Filters\BaseFilter;
 abstract class FredBaseFilter extends BaseFilter
 {
     // Path to the bash files
-    const BIN_FOLDER = __DIR__.'/../../../../vendor/mxnr/imagic-scripts/bin';
+    const FRED_COMPOSER_PACKAGE = 'mxnr/imagic-scripts';
 
     /**
      * The command switch map
@@ -121,7 +121,8 @@ abstract class FredBaseFilter extends BaseFilter
         $tempPathIn = stream_get_meta_data($tempFileIn)['uri'];
 
         // Build the command - first is the command name
-        $execute = sprintf('%s ', self::BIN_FOLDER . '/' . $this->command);
+        $execute = sprintf('%s ', getcwd() . '/vendor/' . self::FRED_COMPOSER_PACKAGE . '/bin/' . $this->command);
+
         // Then each switch
         foreach ($this->switchMap as $key => $value) {
             $string = sprintf('-%s %s ', $value, $this->{$key});
