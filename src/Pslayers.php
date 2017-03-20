@@ -22,7 +22,7 @@ class Pslayers
      *
      * @var \Imagick $masterCanvas
      */
-    private $masterCanvas;
+    public $masterCanvas;
 
     /**
      * Hold the config option
