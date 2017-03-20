@@ -70,7 +70,7 @@ abstract class BaseLayer implements LayerInterface
      *
      * @var $composite
      */
-    public $composite = Imagick::COMPOSITE_DEFAULT;
+    public $composite = Imagick::COMPOSITE_OVER;
 
     /**
      * Layer Filters
@@ -131,7 +131,7 @@ abstract class BaseLayer implements LayerInterface
 
         $this->canvas = new Imagick();
         $this->canvas->newImage($this->width, $this->height, new ImagickPixel('none'));
-        $this->canvas->setImageFormat('png');
+        $this->canvas->setImageFormat('png32');
     }
 
     /**
@@ -261,13 +261,6 @@ abstract class BaseLayer implements LayerInterface
                 $this->canvas = $filter->getImage();
             }
         }
-
-        /**
-         * ImageMagick 7 has setImageAlpha, prior has setImageOpacity
-         *
-         * This check should ensure some compatibility
-         */
-        method_exists($this->canvas, 'setImageAlpha') ? $this->canvas->setImageAlpha($this->opacity()) : $this->canvas->setImageOpacity($this->opacity());
 
         return $this->canvas;
     }

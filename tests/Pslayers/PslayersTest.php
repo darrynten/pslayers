@@ -92,7 +92,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'positionX' => 0,
             'positionY' => 0,
             'composite' => Imagick::COMPOSITE_DEFAULT,
-            'colour' => '#AF8',
+            'colour' => '#0F0',
         ]);
 
         $instance->addLayer($backgroundLayer, 0);
@@ -101,13 +101,13 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         $gradientLayer = new GradientLayer([
             'id' => 'master-layer-gradient',
             'width' => $width,
-            'height' => $height,
-            'opacity' => 1.0,
+            'height' => $height / 2,
+            'opacity' => 0.9,
             'positionX' => 0,
             'positionY' => 0,
-            'composite' => Imagick::COMPOSITE_DIFFERENCE,
-            'startColour' => '#ED1021',
-            'endColour' => '#FFF',
+            'composite' => Imagick::COMPOSITE_OVER,
+            'startColour' => '#F00',
+            'endColour' => 'transparent',
         ]);
 
         $instance->addLayer($gradientLayer, 1);
@@ -247,7 +247,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             ],
         ]);
 
-        $instance->addLayer($imageLayer, 4);
+        // $instance->addLayer($imageLayer, 4);
 
         $instance->render();
     }

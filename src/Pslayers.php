@@ -59,8 +59,8 @@ class Pslayers
         $this->config = new Config($config);
         $this->layers = new LayerCollection();
         $this->masterCanvas = new \Imagick();
-        $this->masterCanvas->newImage($config['width'], $config['height'], new \ImagickPixel('rgba(255, 255, 255, 0)'));
-        $this->masterCanvas->setImageFormat('png');
+        $this->masterCanvas->newImage($config['width'], $config['height'], new \ImagickPixel('none'));
+        $this->masterCanvas->setImageFormat('png32');
     }
 
     /**

@@ -53,7 +53,8 @@ class GradientLayer extends BaseLayer
             !empty($config['endColour']) ? $config['endColour'] : '#000'
         );
 
-        $this->canvas->newPseudoImage($config['width'], $config['height'], sprintf('gradient:%s-%s', $config['startColour'], $config['endColour']));
+        $this->canvas->setImageFormat('png32');
+        $this->canvas->newPseudoImage($config['width'], $config['height'], sprintf('gradient: %s-%s', $config['startColour'], $config['endColour']));
     }
 
     /**
