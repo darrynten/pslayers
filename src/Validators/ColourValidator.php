@@ -54,7 +54,7 @@ class ColourValidator
      *
      * @var array $validLongHex
      */
-    private static $validWord = '/^none$/';
+    private static $validWord = '/^none|transparent$/';
 
     /**
      * Check if valid colour
