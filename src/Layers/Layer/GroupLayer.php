@@ -30,10 +30,12 @@ class GroupLayer extends BaseLayer
      */
     public function __construct(array $config)
     {
+        // Default
+        $this->group = new LayerCollection();
+
+        // Override
         if (!empty($config['group']) && $config['group'] instanceof LayerCollection) {
             $this->group = $config['group'];
-        } else {
-            $this->group = new LayerCollection();
         }
 
         parent::__construct($config);

@@ -123,13 +123,6 @@ class TextLayer extends BaseLayer
     public $strokeOpacity;
 
     /**
-     * Imagick Draw object
-     *
-     * @var ImagicDraw $drawObject
-     */
-    private $drawObject;
-
-    /**
      * Construct the text layer
      */
     public function __construct(array $config)
