@@ -249,6 +249,6 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         // $instance->addLayer($imageLayer, 4);
 
-        $instance->render();
+        // $instance->render();
     }
 }
