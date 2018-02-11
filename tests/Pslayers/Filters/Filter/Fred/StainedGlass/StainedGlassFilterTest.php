@@ -114,7 +114,7 @@ class StainedGlassFilterTest extends \PHPUnit_Framework_TestCase
 
         $filter->setImage($image);
 
-        $result = $filter->render();
+        // $result = $filter->render();
     }
 
     public function testWrongKindException()
