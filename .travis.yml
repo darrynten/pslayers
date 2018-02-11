@@ -5,9 +5,9 @@ php:
   - 7.1
 
 before_script:
-  - wget https://github.com/ImageMagick/ImageMagick/archive/6.9.9-33.tar.gz
-  - tar xzf 6.9.9-33.tar.gz.1
-  - cd ImageMagick-6.9.9-33
+  - wget https://github.com/ImageMagick/ImageMagick/releases/tag/7.0.7-21
+  - tar xzf 7.0.7-21.tar.gz.1
+  - cd ImageMagick-7.0.7-21
   - ./configure
   - sudo make
   - sudo make install
