@@ -1,17 +1,18 @@
 {
   "name": "darrynten/pslayers",
   "description": "PHP Imagick Layers",
+  "version": "1.0.0",
   "type": "library",
   "require": {
     "php": "^7.0",
     "guzzlehttp/guzzle": "^6.2.1",
     "darrynten/any-cache": "^1.0",
     "symfony/process": "^3.2",
-    "mxnr/imagic-scripts": "~1.0"
+    "darrynten/imagick-scripts": "~1.0.1"
   },
   "repositories": [
     {
-      "url": "https://github.com/darrynten/imagic-scripts.git",
+      "url": "darrynten/imagick-scripts",
       "type": "git"
     }
   ],
