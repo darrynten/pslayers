@@ -150,6 +150,7 @@ abstract class FredBaseFilter extends BaseFilter
         }
 
         $this->image->readImage($tempPathOut);
+        unlink($tempPathOut);
 
         return $process->getOutput();
     }

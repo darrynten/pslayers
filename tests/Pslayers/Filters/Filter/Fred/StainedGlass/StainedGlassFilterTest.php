@@ -13,7 +13,7 @@ class StainedGlassFilterTest extends \PHPUnit_Framework_TestCase
     public function getTestImage()
     {
         $image = new \Imagick;
-        $image->newPseudoImage(800, 200, 'fractal:');
+        $image->newPseudoImage(800, 200, 'pattern:BRICKS');
         $image->setImageFormat('png');
         return $image;
     }
@@ -97,7 +97,7 @@ class StainedGlassFilterTest extends \PHPUnit_Framework_TestCase
     public function testRender()
     {
         $image = new \Imagick;
-        $image->newPseudoImage(800, 200, 'fractal:');
+        $image->newPseudoImage(800, 200, 'pattern:BRICKS');
         $image->setImageFormat('png');
 
         $filter = new StainedGlassFilter([
@@ -151,7 +151,7 @@ class StainedGlassFilterTest extends \PHPUnit_Framework_TestCase
     public function testProcessedException()
     {
         $image = new \Imagick;
-        $image->newPseudoImage(800, 200, 'fractal:');
+        $image->newPseudoImage(800, 200, 'pattern:BRICKS');
         $image->setImageFormat('png');
 
         $this->expectException(ProcessFailedException::class);
