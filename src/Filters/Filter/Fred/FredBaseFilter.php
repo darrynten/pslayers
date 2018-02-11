@@ -20,7 +20,7 @@ use DarrynTen\Pslayers\Filters\BaseFilter;
 abstract class FredBaseFilter extends BaseFilter
 {
     // Path to the bash files
-    const FRED_COMPOSER_PACKAGE = 'mxnr/imagic-scripts';
+    const FRED_COMPOSER_PACKAGE = 'darrynten/imagick-scripts';
 
     /**
      * The command switch map
