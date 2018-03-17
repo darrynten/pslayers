@@ -1,7 +1,7 @@
 {
   "name": "darrynten/pslayers",
   "description": "PHP Imagick Layers",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "library",
   "require": {
     "php": "^7.0",
