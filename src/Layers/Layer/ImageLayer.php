@@ -43,9 +43,7 @@ class ImageLayer extends BaseLayer
 
             $this->canvas = $temp;
         } else {
-            $this->image(
-                !empty($config['image']) ? $config['image'] : null
-            );
+            $this->canvas = !empty($config['image']) ? $config['image'] : null;
         }
     }
 
