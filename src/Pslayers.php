@@ -85,7 +85,7 @@ class Pslayers
             $this->masterCanvas->compositeImage($layer->render(), $layer->composite, $layer->positionX, $layer->positionY);
         }
 
-        if ($this->config->outputPath !== null) {
+        if (isset($this->config->outputPath) && $this->config->outputPath !== null) {
             $this->masterCanvas->writeImage($this->config->outputPath);
         }
 
