@@ -295,6 +295,11 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         $instance->addLayer($backgroundLayer, 0);
         $instance->addLayer($gradientLayer, 1);
-        $instance->render();
+        $img = $instance->render();
+
+        $this->assertInstanceOf(Pslayers::class, $instance);
+        $this->assertNotEmpty($instance->layers);
+        $this->assertInstanceOf(LayerCollection::class, $instance->layers);
+        $this->assertInstanceOf(Imagick::class, $img);
     }
 }
