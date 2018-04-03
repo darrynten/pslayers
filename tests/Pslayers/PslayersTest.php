@@ -251,4 +251,58 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
         // $instance->render();
     }
+
+    //Output path was not really optional
+    public function testOptionalOutputPath()
+    {
+        $width = 830;
+        $height = 360;
+
+        $config = [
+            'id' => 11,
+            'width' => $width,
+            'height' => $height,
+        ];
+
+        $instance = new Pslayers($config);
+
+        // background layer
+        $backgroundLayer = new SolidLayer([
+            'id' => 'master-layer-solid-base',
+            'width' => $width,
+            'height' => $height,
+            'opacity' => 1.0,
+            'positionX' => 0,
+            'positionY' => 0,
+            'composite' => Imagick::COMPOSITE_DEFAULT,
+            'colour' => '#0F0',
+        ]);
+
+        $instance->addLayer($backgroundLayer, 0);
+
+        // gradient layer
+        $gradientLayer = new GradientLayer([
+            'id' => 'master-layer-gradient',
+            'width' => $width,
+            'height' => $height / 2,
+            'opacity' => 0.9,
+            'positionX' => 0,
+            'positionY' => 0,
+            'composite' => Imagick::COMPOSITE_OVER,
+            'startColour' => '#F00',
+            'endColour' => 'transparent',
+        ]);
+
+        $instance->addLayer($backgroundLayer, 0);
+        $instance->addLayer($gradientLayer, 1);
+        $img = $instance->render();
+
+        $this->assertInstanceOf(Pslayers::class, $instance);
+        $this->assertNotEmpty($instance->layers);
+        $this->assertInstanceOf(LayerCollection::class, $instance->layers);
+        $this->assertInstanceOf(Imagick::class, $img);
+        $this->assertEquals($width, $img->getImageWidth());
+        $this->assertEquals($height, $img->getImageHeight());
+        $this->assertEquals('png32', $img->getImageFormat());
+    }
 }
