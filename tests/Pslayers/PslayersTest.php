@@ -301,5 +301,8 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         $this->assertNotEmpty($instance->layers);
         $this->assertInstanceOf(LayerCollection::class, $instance->layers);
         $this->assertInstanceOf(Imagick::class, $img);
+        $this->assertEquals($width, $img->getImageWidth());
+        $this->assertEquals($height, $img->getImageHeight());
+        $this->assertEquals('png32', $img->getImageFormat());
     }
 }
