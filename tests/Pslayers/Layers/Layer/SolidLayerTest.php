@@ -5,7 +5,7 @@ namespace DarrynTen\Pslayers\Tests;
 use Imagick;
 use DarrynTen\Pslayers\Layers\Layer\SolidLayer;
 
-class SolidLayerTest extends \PHPUnit_Framework_TestCase
+class SolidLayerTest extends \PHPUnit\Framework\TestCase
 {
     public function testSolidLayer()
     {

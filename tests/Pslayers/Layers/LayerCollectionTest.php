@@ -6,7 +6,7 @@ use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 use DarrynTen\Pslayers\Layers\LayerCollection;
 use DarrynTen\Pslayers\Filters\Filter\BlankFilter;
 
-class LayerCollectionTest extends \PHPUnit_Framework_TestCase
+class LayerCollectionTest extends \PHPUnit\Framework\TestCase
 {
     public function testNewLayers()
     {

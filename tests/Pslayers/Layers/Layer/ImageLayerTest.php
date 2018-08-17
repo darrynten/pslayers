@@ -3,10 +3,10 @@
 namespace DarrynTen\Pslayers\Tests;
 
 use Imagick;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use DarrynTen\Pslayers\Layers\Layer\ImageLayer;
 
-class ImageLayerTest extends PHPUnit_Framework_TestCase
+class ImageLayerTest extends \PHPUnit\Framework\TestCase
 {
     public function testImageLayer()
     {

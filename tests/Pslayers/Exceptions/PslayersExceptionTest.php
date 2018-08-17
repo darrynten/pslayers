@@ -13,7 +13,7 @@ use DarrynTen\Pslayers\Filters\Filter\BlankFilter;
 use DarrynTen\Pslayers\Filters\Filter\Standard\Blur\BlurFilter;
 use DarrynTen\Pslayers\Validators\ColourValidator;
 
-class PslayersExceptionTest extends \PHPUnit_Framework_TestCase
+class PslayersExceptionTest extends \PHPUnit\Framework\TestCase
 {
     public function testJsonException()
     {
