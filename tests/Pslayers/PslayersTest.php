@@ -207,7 +207,7 @@ class PslayersTest extends \PHPUnit\Framework\TestCase
             'filters' => [
                 $blurFilter,
                 // $diceFilter,
-                $stainedGlassFilter,
+                // $stainedGlassFilter,
             ],
         ]);
 
