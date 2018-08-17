@@ -92,8 +92,6 @@ class PslayersTest extends \PHPUnit\Framework\TestCase
 
     public function testMasterRender()
     {
-        $output = '/tmp/tmp.png';
-
         $width = 830;
         $height = 360;
 
@@ -101,7 +99,7 @@ class PslayersTest extends \PHPUnit\Framework\TestCase
             'id' => 11,
             'width' => $width,
             'height' => $height,
-            'outputPath' => $output,
+            'outputPath' => '/tmp/testing.png',
         ];
 
         $instance = new Pslayers($config);
@@ -276,9 +274,9 @@ class PslayersTest extends \PHPUnit\Framework\TestCase
         ]);
 
         $instance->addLayer($imageLayer, 7);
-
         $instance->render();
-        $this->assertFileExists(__DIR__ . '/image/test.png');
+
+        $this->assertFileExists('/tmp/testing.png');
         $this->assertFileExists('/tmp/tmp.png');
     }
 
