@@ -277,7 +277,6 @@ class PslayersTest extends \PHPUnit\Framework\TestCase
         $instance->render();
 
         $this->assertFileExists('/tmp/testing.png');
-        $this->assertFileExists('/tmp/tmp.png');
     }
 
     // Output path was not really optional
