@@ -8,7 +8,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use DarrynTen\Pslayers\Filters\Filter\Fred\StainedGlass\StainedGlassFilter;
 use DarrynTen\Pslayers\Exceptions\PslayersException;
 
-class StainedGlassFilterTest extends \PHPUnit_Framework_TestCase
+class StainedGlassFilterTest extends \PHPUnit\Framework\TestCase
 {
     public function getTestImage()
     {

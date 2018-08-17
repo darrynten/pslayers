@@ -5,7 +5,7 @@ namespace DarrynTen\Pslayers\Tests;
 use Imagick;
 use DarrynTen\Pslayers\Layers\Layer\GradientLayer;
 
-class GradientLayerTest extends \PHPUnit_Framework_TestCase
+class GradientLayerTest extends \PHPUnit\Framework\TestCase
 {
     public function testGradientLayer()
     {

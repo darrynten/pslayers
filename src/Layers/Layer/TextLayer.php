@@ -123,6 +123,13 @@ class TextLayer extends BaseLayer
     public $strokeOpacity;
 
     /**
+     * Rotation
+     *
+     * @var float $rotation The angle of the text.
+     */
+    public $rotation;
+
+    /**
      * Construct the text layer
      */
     public function __construct(array $config)
@@ -185,6 +192,10 @@ class TextLayer extends BaseLayer
 
         $this->strokeOpacity(
             !empty($config['strokeOpacity']) ? $config['strokeOpacity'] : 0.0
+        );
+
+        $this->rotation(
+            !empty($config['rotation']) ? $config['rotation'] : 0.0
         );
 
         parent::__construct($config);
@@ -431,6 +442,22 @@ class TextLayer extends BaseLayer
     }
 
     /**
+     * Get and set the rotation
+     *
+     * @param null|float $rotation The rotation in degrees
+     *
+     * @return boolean|float
+     */
+    public function rotation(float $rotation = null)
+    {
+        if ($rotation === null) {
+            return $this->rotation;
+        }
+
+        return $this->rotation = $rotation;
+    }
+
+    /**
      * Get and set the text
      *
      * @param null|string $text The text
@@ -479,6 +506,8 @@ class TextLayer extends BaseLayer
         $this->positionY = $this->positionY + $dimensions['textHeight'] * 0.66;
 
         $this->canvas->annotateImage($draw, $this->positionX, $this->positionY, 0, $this->text);
+        $this->canvas->rotateImage(new \ImagickPixel('#00000000'), $this->rotation);
+        $this->canvas->setImagePage($this->canvas->getImageWidth(), $this->canvas->getImageHeight(), 0, 0);
 
         return $this->canvas;
     }

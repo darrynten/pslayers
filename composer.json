@@ -1,7 +1,7 @@
 {
   "name": "darrynten/pslayers",
   "description": "PHP Imagick Layers",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "type": "library",
   "require": {
     "php": "^7.0",
@@ -11,7 +11,7 @@
     "darrynten/imagick-scripts": "~1.0.1"
   },
   "require-dev": {
-    "phpunit/phpunit": "~5.0",
+    "phpunit/phpunit": "^7.0",
     "mockery/mockery": "dev-master"
   },
   "config": {

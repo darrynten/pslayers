@@ -1,6 +1,7 @@
 language: php
 php:
   - 7.1
+  - 7.2
 before_script:
   - sudo apt-get install libjpeg-dev libpng-dev libtiff-dev libgif-dev webp openjpeg-tools
   - wget https://github.com/ImageMagick/ImageMagick/archive/7.0.7-21.tar.gz

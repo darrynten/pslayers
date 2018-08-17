@@ -21,7 +21,7 @@ use DarrynTen\Pslayers\Filters\Filter\Fred\StainedGlass\StainedGlassFilter;
 use DarrynTen\Pslayers\Filters\Filter\Fred\Dice\DiceFilter;
 use DarrynTen\Pslayers\Filters\Filter\Standard\Blur\BlurFilter;
 
-class PslayersTest extends \PHPUnit_Framework_TestCase
+class PslayersTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstruct()
     {
@@ -61,6 +61,29 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayNotHasKey(2, $instance->layers->collection);
     }
 
+    public function testRender()
+    {
+        $config = [
+            'id' => 11,
+            'width' => 800,
+            'height' => 380,
+            'outputPath' => '/tmp/test.png',
+        ];
+
+        $instance = new Pslayers($config);
+        $this->assertInstanceOf(Pslayers::class, $instance);
+
+        $newLayer = new BlankLayer([
+            'id' => 'aaa',
+            'width' => 20,
+            'height' => 20
+        ]);
+
+        $instance->addLayer($newLayer, 1);
+        $instance->render();
+        $this->assertFileExists('/tmp/test.png');
+    }
+
     public function testValidation()
     {
         $this->assertTrue(ImageTypeValidator::isValidImageType('jpg'));
@@ -69,8 +92,6 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
 
     public function testMasterRender()
     {
-        $output = '/tmp/tmp.png';
-
         $width = 830;
         $height = 360;
 
@@ -78,7 +99,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'id' => 11,
             'width' => $width,
             'height' => $height,
-            'outputPath' => $output,
+            'outputPath' => '/tmp/testing.png',
         ];
 
         $instance = new Pslayers($config);
@@ -126,6 +147,8 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $instance->addLayer($radialGradientLayer, 2);
+        $this->assertEquals('#3FA', $radialGradientLayer->endColour());
+        $this->assertEquals('#4A3', $radialGradientLayer->startColour());
 
         // pattern layer
         $patternLayer = new PatternLayer([
@@ -142,6 +165,8 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
         ]);
 
         $instance->addLayer($patternLayer, 3);
+        $this->assertEquals(1, $patternLayer->scale());
+        $this->assertEquals('horizontal', $patternLayer->pattern());
 
         // plasma layer
         $stainedGlassFilter = new StainedGlassFilter([
@@ -182,7 +207,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'filters' => [
                 $blurFilter,
                 // $diceFilter,
-                $stainedGlassFilter,
+                // $stainedGlassFilter,
             ],
         ]);
 
@@ -197,6 +222,7 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'text' => 'Some Text',
             'composite' => Imagick::COMPOSITE_DEFAULT,
             'fontColour' => '#FFF',
+            'font' => __DIR__ . '/fonts/Passion_One/PassionOne-Regular.ttf',
             'strokeColour' => 'none',
             'strokeOpacity' => 0.0,
             'fontSize' => 56,
@@ -243,16 +269,17 @@ class PslayersTest extends \PHPUnit_Framework_TestCase
             'imageUrl' => __DIR__ . '/image/test.png',
             'composite' => Imagick::COMPOSITE_MULTIPLY,
             'filters' => [
-                $stainedGlassFilter,
+                $blurFilter,
             ],
         ]);
 
-        // $instance->addLayer($imageLayer, 4);
+        $instance->addLayer($imageLayer, 7);
+        $instance->render();
 
-        // $instance->render();
+        $this->assertFileExists('/tmp/testing.png');
     }
 
-    //Output path was not really optional
+    // Output path was not really optional
     public function testOptionalOutputPath()
     {
         $width = 830;

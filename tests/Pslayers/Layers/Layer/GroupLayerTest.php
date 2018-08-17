@@ -7,7 +7,7 @@ use DarrynTen\Pslayers\Layers\LayerCollection;
 use DarrynTen\Pslayers\Layers\Layer\GroupLayer;
 use DarrynTen\Pslayers\Layers\Layer\BlankLayer;
 
-class GroupLayerTest extends \PHPUnit_Framework_TestCase
+class GroupLayerTest extends \PHPUnit\Framework\TestCase
 {
     public function testNewGroupLayer()
     {
@@ -47,8 +47,20 @@ class GroupLayerTest extends \PHPUnit_Framework_TestCase
             'id' => 3,
             'width' => 200,
             'height' => 200,
+        ]);
+
+        $this->assertEmpty($anotherLayer->group->collection);
+        $anotherLayer->addLayer($newLayer, 9);
+        $this->assertNotEmpty($anotherLayer->group->collection);
+
+        $anotherLayerWithGroup = new GroupLayer([
+            'id' => 3,
+            'width' => 200,
+            'height' => 200,
             'group' => $collection
         ]);
+
+        $this->assertNotEmpty($anotherLayerWithGroup->group->collection);
     }
 
     public function testGetGroupLayerArray()
