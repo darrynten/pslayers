@@ -269,7 +269,7 @@ class PslayersTest extends \PHPUnit\Framework\TestCase
             'imageUrl' => __DIR__ . '/image/test.png',
             'composite' => Imagick::COMPOSITE_MULTIPLY,
             'filters' => [
-                $stainedGlassFilter,
+                $blurFilter,
             ],
         ]);
 
