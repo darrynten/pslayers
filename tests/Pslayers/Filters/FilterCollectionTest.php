@@ -5,7 +5,7 @@ namespace DarrynTen\Pslayers\Tests;
 use DarrynTen\Pslayers\Filters\Filter\BlankFilter;
 use DarrynTen\Pslayers\Filters\FilterCollection;
 
-class FilterCollectionTest extends \PHPUnit_Framework_TestCase
+class FilterCollectionTest extends \PHPUnit\Framework\TestCase
 {
     public function getTestImage()
     {

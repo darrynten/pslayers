@@ -5,7 +5,7 @@ namespace DarrynTen\Pslayers\Tests;
 use Imagick;
 use DarrynTen\Pslayers\Layers\Layer\TextLayer;
 
-class TextLayerTest extends \PHPUnit_Framework_TestCase
+class TextLayerTest extends \PHPUnit\Framework\TestCase
 {
     public function testNewTextLayer()
     {
@@ -85,6 +85,9 @@ class TextLayerTest extends \PHPUnit_Framework_TestCase
 
         $layer->strokeOpacity(1.0);
         $this->assertEquals(1.0, $layer->strokeOpacity());
+
+        $layer->rotation(1.0);
+        $this->assertEquals(1.0, $layer->rotation());
     }
 
     public function testGetTextLayerArray()

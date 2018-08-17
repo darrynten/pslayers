@@ -5,7 +5,7 @@ namespace DarrynTen\Pslayers\Tests\Validators;
 use DarrynTen\Pslayers\Validators\ColourValidator;
 use DarrynTen\Pslayers\Exceptions\PslayersException;
 
-class ColourValidatorTest extends \PHPUnit_Framework_TestCase
+class ColourValidatorTest extends \PHPUnit\Framework\TestCase
 {
     public function testValidation()
     {

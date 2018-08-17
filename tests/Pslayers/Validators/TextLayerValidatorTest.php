@@ -5,7 +5,7 @@ namespace DarrynTen\Pslayers\Tests\Validators;
 use DarrynTen\Pslayers\Validators\TextLayerValidator;
 use DarrynTen\Pslayers\Exceptions\PslayersException;
 
-class TextLayerValidatorTest extends \PHPUnit_Framework_TestCase
+class TextLayerValidatorTest extends \PHPUnit\Framework\TestCase
 {
     public function testValidation()
     {
