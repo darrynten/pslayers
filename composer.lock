@@ -322,16 +322,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.1.6",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "ee33c0322a8fee0855afcc11fff81e6b1011b529"
+                "reference": "2b341009ccec76837a7f46f59641b431e4d4c2b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/ee33c0322a8fee0855afcc11fff81e6b1011b529",
-                "reference": "ee33c0322a8fee0855afcc11fff81e6b1011b529",
+                "url": "https://api.github.com/repos/symfony/process/zipball/2b341009ccec76837a7f46f59641b431e4d4c2b0",
+                "reference": "2b341009ccec76837a7f46f59641b431e4d4c2b0",
                 "shasum": ""
             },
             "require": {
@@ -340,7 +340,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.1-dev"
+                    "dev-master": "4.2-dev"
                 }
             },
             "autoload": {
@@ -367,7 +367,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T12:40:59+00:00"
+            "time": "2018-11-20T16:22:05+00:00"
         }
     ],
     "packages-dev": [
@@ -479,12 +479,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "92ea12e9abf9fb59525c537715304989750df5e6"
+                "reference": "e269741a9e96f7a6257054ff963fc2b6316cf21a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/92ea12e9abf9fb59525c537715304989750df5e6",
-                "reference": "92ea12e9abf9fb59525c537715304989750df5e6",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/e269741a9e96f7a6257054ff963fc2b6316cf21a",
+                "reference": "e269741a9e96f7a6257054ff963fc2b6316cf21a",
                 "shasum": ""
             },
             "require": {
@@ -536,7 +536,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2018-10-10T08:08:22+00:00"
+            "time": "2018-11-22T06:31:11+00:00"
         },
         {
             "name": "myclabs/deep-copy",
